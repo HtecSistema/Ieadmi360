@@ -20,6 +20,25 @@
     margin-right:auto !important;
     align-self:flex-start !important;
   }
+  /* DEIXA OS 3 BOTÕES DO MESMO TAMANHO */
+  .botoes{
+    display:flex !important;
+    gap:10px !important;
+    flex-wrap:nowrap !important;
+  }
+  .botoes .btn{
+    flex:1 !important;
+    width:100% !important;
+    height:44px !important;
+    min-height:44px !important;
+    padding:0 8px !important;
+    font-size:12px !important;
+    font-weight:800 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    white-space:nowrap !important;
+  }
 </style>
 </head><body>
 <div class="folha">
@@ -35,26 +54,19 @@
   </div>
 
   <div class="bloco">
-    <div class="campo"><label>Valor dos Dízimos R$</label><input class="valor" id="dizimos" type="number" placeholder="0,00"></div>
-    <div class="campo"><label>Oferta de Missões R$</label><input class="valor" id="ofertaMissoes" type="number" placeholder="0,00"></div>
-    <div class="campo"><label>Oferta de Carnê Missionário R$</label><input class="valor" id="carne" type="number" placeholder="0,00"></div>
-    <div class="campo"><label>Oferta do Culto R$</label><input class="valor" id="ofertaCulto" type="number" placeholder="0,00"></div>
-    <div class="campo"><label>2º Oferta R$</label><input class="valor" id="oferta2" type="number" placeholder="0,00"></div>
-    <div class="campo"><label>Oferta Construção R$</label><input class="valor" id="construcao" type="number" placeholder="0,00"></div>
-    <div class="campo"><label>Outros R$</label><input class="valor" id="outros" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>Valor dos Dízimos R$</label><input class="valor" id="dizimos" type="text" inputmode="decimal" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta de Missões R$</label><input class="valor" id="ofertaMissoes" type="text" inputmode="decimal" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta de Carnê Missionário R$</label><input class="valor" id="carne" type="text" inputmode="decimal" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta do Culto R$</label><input class="valor" id="ofertaCulto" type="text" inputmode="decimal" placeholder="0,00"></div>
+    <div class="campo"><label>2º Oferta R$</label><input class="valor" id="oferta2" type="text" inputmode="decimal" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta Construção R$</label><input class="valor" id="construcao" type="text" inputmode="decimal" placeholder="0,00"></div>
+    <div class="campo"><label>Outros R$</label><input class="valor" id="outros" type="text" inputmode="decimal" placeholder="0,00"></div>
     <div class="campo total"><label>Total de Entrada R$</label><input id="totalEntrada" type="text" readonly></div>
   </div>
 
   <div class="assinaturas">
     <div class="campo-ass"><label>Tesoureiro</label><input id="assTesoureiro" type="text"></div>
     <div class="campo-ass"><label>Dirigente</label><input id="assDirigente" type="text"></div>
-  </div>
-
-  <div class="testemunhas">
-    <div class="titulo-sec">Testemunhas</div>
-    <div class="test-linha"><input id="func1" type="text" placeholder="Função"><input id="nome1" type="text" placeholder="Nome"></div>
-    <div class="test-linha"><input id="func2" type="text" placeholder="Função"><input id="nome2" type="text" placeholder="Nome"></div>
-    <div class="test-linha"><input id="func3" type="text" placeholder="Função"><input id="nome3" type="text" placeholder="Nome"></div>
   </div>
 
   <div class="botoes">
