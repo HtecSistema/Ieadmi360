@@ -1,6 +1,6 @@
 *{box-sizing:border-box; margin:0; padding:0;}
-body{background:#000 !important; color:#fff; font-family:Arial, sans-serif; padding:12px;}
-.folha{background:#000; border:1px solid #222; padding:12px; max-width:720px; margin:auto;}
+body{background:#000 !important; color:#fff; font-family:Arial, sans-serif; padding:12px; display:flex; justify-content:flex-end;}
+.folha{background:#000; border:1px solid #222; padding:12px; max-width:720px; width:100%; margin-left:auto; margin-right:0;}
 .titulo.topo{text-align:center; font-weight:900; font-size:14px; color:#ff8c00; text-decoration:underline; margin:0 0 15px 0; text-transform:uppercase; line-height:1.3;}
 .header-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:12px;}
 .header-grid label, .campo-ass label{font-size:9px; color:#ff8c00; font-weight:700; display:block; margin-bottom:2px; text-transform:uppercase;}
