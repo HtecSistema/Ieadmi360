@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>DTesouraria</title>
+  <link rel="stylesheet" href="DTesouraria.css">
+</head>
+<body>
+<div class="folha">
+<h1>Relatório Financeiro Mensal de Departamento</h1>
+<div class="sub">Controle de Entradas, Saídas e Fechamento de Caixa</div>
+<div class="top-botoes">
+  <button class="btn-top btn-salvar" id="btnSalvarTop">💾 Salvar</button>
+  <button class="btn-top btn-limpar-top" id="btnLimparTop">🧹 Limpar</button>
+  <button class="btn-top btn-excluir" id="btnExcluirTop">🗑️ Excluir</button>
+  <button class="btn-top btn-print-top" id="btnPrintTop">🖨️ Imprimir</button>
+</div>
+
+<div class="header-grid">
+  <div class="field"><label>Depto:</label><input type="text" id="depto" value="DEPARTAMENTO DE JOVENS"></div>
+  <div class="field"><label>Congregação:</label><input type="text" id="congregacao" value="SEDE - PARAGOMINAS"></div>
+</div>
+
+
+<div class="header-grid tri">
+  <div class="field"><label>Mês / Ano</label><input type="month" id="mesAno"></div>
+  <div class="field"><label>Período: De</label><input type="date" id="periodoDe"></div>
+  <div class="field"><label>Até</label><input type="date" id="periodoAte"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Entradas</div>
+  <div class="linhas">
+    <div class="linha"><span>Ofertas R$:</span><input type="number" inputmode="decimal" class="entrada" id="e1" placeholder="0,00"></div>
+    <div class="linha"><span>Ofertas das Consagrações R$:</span><input type="number" inputmode="decimal" class="entrada" id="e2" placeholder="0,00"></div>
+    <div class="linha"><span>Outras arrecadações R$:</span><input type="number" inputmode="decimal" class="entrada" id="e3" placeholder="0,00"></div>
+    <div class="linha total"><span>Total de Entradas R$:</span><input type="text" id="totalEntradas" readonly value="0,00"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Saídas e Despesas</div>
+  <div class="linhas">
+    <div class="linha"><span>Dízimo p/ regional (10%) R$:</span><input type="number" inputmode="decimal" class="saida" id="dizimo10" readonly placeholder="0,00"></div>
+    <div class="linha"><span>Repasse p/ liderança geral (20%) R$:</span><input type="number" inputmode="decimal" class="saida" id="repasse20" readonly placeholder="0,00"></div>
+    <div class="linha"><span>Despesa c/ Pregadores R$:</span><input type="number" inputmode="decimal" class="saida" placeholder="0,00"></div>
+    <div class="linha"><span>Viagem p/ Brasília do coordenador R$:</span><input type="number" inputmode="decimal" class="saida" placeholder="0,00"></div>
+    <div class="linha"><span>Materiais de escritório R$:</span><input type="number" inputmode="decimal" class="saida" placeholder="0,00"></div>
+    <div class="linha"><span>Mídias (Cd's, Cópias, Vídeos) R$:</span><input type="number" inputmode="decimal" class="saida" placeholder="0,00"></div>
+    <div class="linha"><span>Despesas c/ eventos R$:</span><input type="number" inputmode="decimal" class="saida" placeholder="0,00"></div>
+    <div class="linha"><span>Outras despesas R$:</span><input type="number" inputmode="decimal" class="saida" placeholder="0,00"></div>
+    <div class="linha total"><span>Total de Saídas R$:</span><input type="text" id="totalSaidas" readonly value="0,00"></div>
+  </div>
+</div>
+
+<div class="section fechamento">
+  <div class="section-title">Fechamento de Caixa</div>
+  <div class="linhas">
+    <div class="linha"><span>Caixa anterior R$:</span><input type="number" inputmode="decimal" id="caixaAnterior" placeholder="0,00"></div>
+    <div class="linha"><span>Total de entradas R$:</span><input type="text" id="confEntradas" readonly value="0,00"></div>
+    <div class="linha total"><span>Somas p/ conferências R$:</span><input type="text" id="somaConf" readonly value="0,00"></div>
+    <div class="linha"><span>Total de saídas R$:</span><input type="text" id="confSaidas" readonly value="0,00"></div>
+    <div class="linha total saldo"><span>Saldo de Caixa R$:</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
+  </div>
+</div>
+
+<div class="assinaturas">
+  <div>Dirigente da congregação</div>
+  <div>Tesoureiro da Regional</div>
+  <div>Tesoureiro do Departamento</div>
+</div>
+</div>
+<script src="script.js"></script>
+<script src="DTesouraria.js"></script>
+</body>
+</html>
