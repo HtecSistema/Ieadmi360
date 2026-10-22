@@ -75,3 +75,32 @@ h1{text-align:center; font-size:17px; font-weight:900; margin:0; text-transform:
   width:100px !important;
 }
 }
+
+/* CORREÇÃO - CENTRALIZAR E NÃO CORTAR CAMPOS */
+.folha{
+  overflow-x: hidden !important;
+}
+.linhas{
+  padding: 4px 12px !important;
+}
+.section-title{
+  flex-wrap: wrap !important;
+}
+.linha{
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.total-dentro{
+  width: 100% !important;
+  justify-content: space-between !important;
+}
+.total-dentro span{
+  flex: 1 !important;
+}
+.total-dentro input{
+  width: 100px !important;
+  min-width: 100px !important;
+  max-width: 100px !important;
+  flex-shrink: 0 !important;
+}
