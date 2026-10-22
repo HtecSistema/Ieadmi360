@@ -1,14 +1,31 @@
-function toFloat(v){ return parseFloat(v) || 0; }
-function fmt(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2}); }
-function getVal(id){ let el=document.getElementById(id); if(!el) return '0,00'; let v=el.value; if(!v) return '0,00'; if(v.includes(',')) return v; let n=parseFloat(v); return isNaN(n)?'0,00':n.toLocaleString('pt-BR',{minimumFractionDigits:2}); }
+function toFloat(v){
+  if(!v) return 0;
+  // corrige: 1.000,00 -> 1000.00
+  v = v.toString().replace(/\./g,'').replace(',','.');
+  return parseFloat(v)||0;
+}
+function fmt(v){
+  return v.toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function getVal(id){
+  let el=document.getElementById(id);
+  if(!el) return '0,00';
+  let v=el.value;
+  if(!v) return '0,00';
+  // se já tá no padrão 1.000,00 devolve direto
+  if(v.includes(',')) return v;
+  let n=toFloat(v);
+  return isNaN(n)?'0,00':fmt(n);
+}
 
 function calcular(){
   let entradas = 0;
   document.querySelectorAll('.entrada').forEach(i => entradas += toFloat(i.value));
   let dizimo = entradas * 0.10;
   let repasse = entradas * 0.20;
-  if(document.getElementById('dizimo10')) document.getElementById('dizimo10').value = dizimo > 0 ? dizimo.toFixed(2) : '';
-  if(document.getElementById('repasse20')) document.getElementById('repasse20').value = repasse > 0 ? repasse.toFixed(2) : '';
+  // AGORA NO PADRÃO 1.000,00
+  if(document.getElementById('dizimo10')) document.getElementById('dizimo10').value = dizimo > 0 ? fmt(dizimo) : '';
+  if(document.getElementById('repasse20')) document.getElementById('repasse20').value = repasse > 0 ? fmt(repasse) : '';
   let saidas = 0;
   document.querySelectorAll('.saida').forEach(i => saidas += toFloat(i.value));
   let caixaAnt = toFloat(document.getElementById('caixaAnterior').value);
@@ -21,15 +38,19 @@ function calcular(){
 }
 function mascaraAoDigitar(e){
   let v = e.target.value.replace(/\D/g,'');
-  if(v === ''){ calcular(); return; }
-  v = (parseInt(v) / 100).toFixed(2);
+  if(v === ''){
+    calcular();
+    return;
+  }
+  v = (parseInt(v,10) / 100).toFixed(2);
+  v = v.replace('.',',');
+  v = v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   e.target.value = v;
   calcular();
 }
 function mascaraDecimal(input){
-  let val = input.value.replace(',', '.');
-  val = parseFloat(val);
-  if(!isNaN(val)) input.value = val.toFixed(2);
+  if(!input.value) return;
+  input.value = fmt(toFloat(input.value));
 }
 function preencherDatas(){
   let campo = document.getElementById('mesAno');
@@ -111,7 +132,7 @@ function imprimirRelatorio(){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('input[type="number"]').forEach(input => {
+  document.querySelectorAll('.valor').forEach(input => {
     input.addEventListener('input', mascaraAoDigitar);
     input.addEventListener('blur', function(){ if(this.value !== '') mascaraDecimal(this); calcular(); });
     input.addEventListener('focus', function(){ setTimeout(()=>this.select(),50); });
@@ -134,6 +155,6 @@ document.addEventListener('DOMContentLoaded', function(){
   let btnPrint = document.getElementById('btnPrintTop');
   if(btnPrint) btnPrint.addEventListener('click', imprimirRelatorio);
   let btnLimpar = document.getElementById('btnLimparTop');
-  if(btnLimpar) btnLimpar.addEventListener('click', ()=>{ document.querySelectorAll('input[type="number"]').forEach(i=>i.value=''); calcular(); });
+  if(btnLimpar) btnLimpar.addEventListener('click', ()=>{ document.querySelectorAll('.valor').forEach(i=>i.value=''); calcular(); });
   calcular();
 });
