@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tesouraria Congregação</title>
+  <link rel="stylesheet" href="CTesouraria.css">
+  <style>
+    body{
+      display:flex !important;
+      justify-content:flex-start !important;
+      align-items:flex-start !important;
+      background:#000 !important;
+      margin:0 !important;
+      padding:0 !important;
+    }
+    .folha{
+      margin:0 !important;
+      margin-right:auto !important;
+      align-self:flex-start !important;
+    }
+  </style>
+</head>
+<body>
+<div class="folha">
+  <div class="header-grid tri">
+    <div class="field"><label>Do dia</label><input type="date" id="doDia"></div>
+    <div class="field"><label>A</label><input type="date" id="aDia"></div>
+    <div class="field"><label>De</label><input type="month" id="deMes"></div>
+  </div>
+
+  <div class="header-grid">
+    <div class="field"><label>Congregação</label><input type="text" id="congregacao" placeholder="NOME DA CONGREGAÇÃO"></div>
+    <div class="field"><label>Dirigente</label><input type="text" id="dirigente" placeholder="NOME DO DIRIGENTE"></div>
+  </div>
+
+  <div class="header-grid">
+    <div class="field"><label>Tesoureiro</label><input type="text" id="tesoureiro" placeholder="NOME DO TESOUREIRO"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span>Entrada de Caixa Anterior</span></div>
+    <div class="linhas">
+      <div class="linha"><span>Saldo Anterior</span><input type="text" inputmode="numeric" class="valor" id="saldoAnterior" placeholder="0,00"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span>Entradas</span><div class="total-dentro"><span>TOTAL DE ENTRADAS</span><input type="text" id="totalEntradas" readonly value="0,00"></div></div>
+    <div class="linhas">
+      <div class="linha"><span>Dízimos</span><input type="text" inputmode="numeric" class="valor entrada" id="dizimos" placeholder="0,00"></div>
+      <div class="linha"><span>Ofertas</span><input type="text" inputmode="numeric" class="valor entrada" id="ofertas" placeholder="0,00"></div>
+    </div>
+  </div>
+
+    <div class="section">
+    <div class="section-title">
+      <span>Saídas e Despesas</span>
+      <div class="total-dentro"><span>TOTAL DE SAÍDAS</span><input type="text" id="totalSaidas" readonly value="0,00"></div>
+    </div>
+    <div class="linhas">
+      <div class="linha"><span>Obra Missionária 25%</span><input type="text" class="saida" id="obra25" readonly placeholder="0,00"></div>
+      <div class="linha"><span>Repasse Regional 35%</span><input type="text" id="repasse35" readonly placeholder="0,00"></div>
+      <div class="linha"><span>Gratificação do Dirigente 20% (soma)</span><input type="text" class="saida" id="gratif20" readonly placeholder="0,00"></div>
+        <div class="linha"><span>Luz, Água e Telefone</span><input type="text" inputmode="numeric" class="valor saida" id="s1" placeholder="0,00"></div>
+        <div class="linha"><span>Material de Limpeza</span><input type="text" inputmode="numeric" class="valor saida" id="s2" placeholder="0,00"></div>
+         <div class="linha"><span>Despesa com Combustível</span><input type="text" inputmode="numeric" class="valor saida" id="s7" placeholder="0,00"></div>
+        <div class="linha"><span>Viagem p/ Brasília (10 parcelas)</span><input type="text" inputmode="numeric" class="valor saida" id="s11" placeholder="0,00"></div>
+        <div class="linha"><span>Assistência Social</span><input type="text" inputmode="numeric" class="valor saida" id="s14" placeholder="0,00"></div>
+        <div class="linha"><span>Material de Ceia</span><input type="text" inputmode="numeric" class="valor saida" id="s4" placeholder="0,00"></div>
+
+      <button type="button" id="btnVerMais" style="width:100%; margin:8px 0; padding:8px; background:#1e1e1e; border:1.5px dashed #3f3f46; border-radius:8px; color:#fbbf24; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; cursor:pointer;">
+        ▼ Ver mais despesas (Luz até Assistência)
+      </button>
+
+      <div id="despesasExtras" style="display:none;">
+        <div class="linha"><span>Material de Escritório e Consumo</span><input type="text" inputmode="numeric" class="valor saida" id="s3" placeholder="0,00"></div>
+        <div class="linha"><span>Despesa com Construção</span><input type="text" inputmode="numeric" class="valor saida" id="s5" placeholder="0,00"></div>
+        <div class="linha"><span>Despesa com Eventos</span><input type="text" inputmode="numeric" class="valor saida" id="s6" placeholder="0,00"></div>
+        <div class="linha"><span>Consertos em Geral</span><input type="text" inputmode="numeric" class="valor saida" id="s8" placeholder="0,00"></div>
+        <div class="linha"><span>Frete e Correios</span><input type="text" inputmode="numeric" class="valor saida" id="s9" placeholder="0,00"></div>
+        <div class="linha"><span>Prestação de Serviços</span><input type="text" inputmode="numeric" class="valor saida" id="s10" placeholder="0,00"></div>
+        <div class="linha"><span>Contador</span><input type="text" inputmode="numeric" class="valor saida" id="s12" placeholder="0,00"></div>
+        <div class="linha"><span>Prestação de Terreno</span><input type="text" inputmode="numeric" class="valor saida" id="s13" placeholder="0,00"></div>
+      </div>
+    </div>
+  </div>
+
+    <div class="section">
+    <div class="section-title"><span>entrada/Estorno do Dirigente</span></div>
+    <div class="linhas">
+      <div class="linha"><span>(-) Dízimo de Prebenda 10%</span><input type="text" class="saida" id="prebenda10" readonly placeholder="0,00"></div>
+      <div class="linha"><span>(-) Carnê de Missões</span><input type="text" inputmode="numeric" class="valor" id="carneMissoes" placeholder="0,00"></div>
+      <div class="linha"><span>(-) Oferta do Milho</span><input type="text" inputmode="numeric" class="valor" id="ofertaMilho" placeholder="0,00"></div>
+      <div class="linha total saldo"><span>Líquido p/ Dirigente</span><input type="text" id="cxGratif" readonly placeholder="0,00"></div>
+    </div>
+  </div>
+
+  <div class="section fechamento">
+    <div class="section-title">Fechamento do Caixa</div>
+    <div class="linhas">
+      <div class="linha"><span>Saldo Anterior</span><input type="text" id="confSaldoAnt" readonly value="0,00"></div>
+      <div class="linha"><span>Total de Entrada</span><input type="text" id="confEntrada" readonly value="0,00"></div>
+      <div class="linha"><span>Somas p/ Conferência (Saldo anterior + Total de Entrada)</span><input type="text" id="somaConf" readonly value="0,00"></div>
+      <div class="linha"><span>Total de Saída</span><input type="text" id="confSaida" readonly value="0,00"></div>
+<div class="linha repasse"><span>Total de repasse</span><input type="text" id="confRepasse" readonly value="0,00"></div>
+      <div class="linha total saldo"><span>Saldo do Caixa</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
+      <div class="linha total"><span>Dízimo do Dirigente</span><input type="text" inputmode="numeric" class="valor" id="dizimoDirigente" placeholder="0,00"></div>
+    </div>
+  </div>
+
+  <div class="top-botoes bottom">
+    <button class="btn-top btn-salvar" id="btnSalvar">💾 SALVAR</button>
+    <button class="btn-top btn-limpar-top" id="btnLimpar">🧹 LIMPAR</button>
+    <button class="btn-top btn-excluir" id="btnExcluir">🗑️ EXCLUIR</button>
+    <button class="btn-top btn-print-top" id="btnPrint">🖨️ IMPRIMIR</button>
+  </div>
+</div>
+<script src="CTesouraria.js"></script>
+</body>
+</html>
