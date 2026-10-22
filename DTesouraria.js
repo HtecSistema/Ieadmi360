@@ -5,37 +5,19 @@ function fmt(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2, maxim
 function calcular(){
   let entradas = 0;
   document.querySelectorAll('.entrada').forEach(i => entradas += toFloat(i.value));
-  
-  // Calcula 10% e 20% automático
   let dizimo = entradas * 0.10;
   let repasse = entradas * 0.20;
-  
-  if(document.getElementById('dizimo10')){
-    document.getElementById('dizimo10').value = dizimo > 0 ? dizimo.toFixed(2) : '';
-  }
-  if(document.getElementById('repasse20')){
-    document.getElementById('repasse20').value = repasse > 0 ? repasse.toFixed(2) : '';
-  }
-
+  if(document.getElementById('dizimo10')) document.getElementById('dizimo10').value = dizimo > 0 ? dizimo.toFixed(2) : '';
+  if(document.getElementById('repasse20')) document.getElementById('repasse20').value = repasse > 0 ? repasse.toFixed(2) : '';
   let saidas = 0;
   document.querySelectorAll('.saida').forEach(i => saidas += toFloat(i.value));
-
   let caixaAnt = toFloat(document.getElementById('caixaAnterior').value);
-
   document.getElementById('totalEntradas').value = fmt(entradas);
   document.getElementById('totalSaidas').value = fmt(saidas);
   document.getElementById('confEntradas').value = fmt(entradas);
   document.getElementById('confSaidas').value = fmt(saidas);
   document.getElementById('somaConf').value = fmt(caixaAnt + entradas);
   document.getElementById('saldoCaixa').value = fmt((caixaAnt + entradas) - saidas);
-}
-
-// Eventos - DECIMAL SEMPRE
-function mascaraDecimal(input){
-  let valor = input.value.replace(',', '.');
-  valor = parseFloat(valor);
-  if(isNaN(valor)) return;
-  input.value = valor.toFixed(2);
 }
 
 function mascaraAoDigitar(e){
@@ -46,95 +28,54 @@ function mascaraAoDigitar(e){
   calcular();
 }
 
-document.querySelectorAll('input[type="number"]').forEach(input => {
-  input.addEventListener('input', mascaraAoDigitar);
-  input.addEventListener('blur', function(){
-    if(this.value !== '') mascaraDecimal(this);
-    calcular();
-  });
-  input.addEventListener('focus', function(){
-    setTimeout(() => this.select(), 50);
-  });
-  input.addEventListener('wheel', function(e){
-    e.preventDefault();
-    this.blur();
-  }, {passive: false});
-});
+function mascaraDecimal(input){
+  let val = input.value.replace(',', '.');
+  val = parseFloat(val);
+  if(!isNaN(val)) input.value = val.toFixed(2);
+}
 
-// Pra campos de texto (Departamento etc) continuar calculando
-document.querySelectorAll('input[type="text"], input[type="month"], input[type="date"]').forEach(input => {
-  input.addEventListener('input', calcular);
-});
-
-
-// ENTER FUNCIONA COMO TAB
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
-    e.preventDefault();
-    let inputs = Array.from(document.querySelectorAll('input:not([readonly])'));
-    let index = inputs.indexOf(document.activeElement);
-    if (index > -1 && index + 1 < inputs.length) {
-      inputs[index + 1].focus();
-    }
-  }
-});
-
-document.getElementById('btnPrint').addEventListener('click', () => window.print());
-
-document.getElementById('btnLimpar').addEventListener('click', () => {
-  if(!confirm('Limpar tudo?')) return;
-  document.querySelectorAll('input[type="number"], input[type="text"].espec').forEach(i => i.value = '');
-  document.getElementById('depto').value = 'DEPARTAMENTO DE JOVENS';
-  document.getElementById('congregacao').value = 'SEDE - PARAGOMINAS';
-  calcular();
-});
-
-
-// MÊS/ANO AUTOMÁTICO -> PREENCHE AS DATAS
-document.getElementById('mesAno').addEventListener('change', function(){
-  let val = this.value; // vem tipo "2026-10"
-  if(!val) return;
-  
-  let [ano, mes] = val.split('-');
-  mes = parseInt(mes);
-  ano = parseInt(ano);
-  
-  // Primeiro dia
+function preencherDatas(){
+  let campo = document.getElementById('mesAno');
+  if(!campo || !campo.value) return;
+  let [ano, mes] = campo.value.split('-');
+  ano = parseInt(ano); mes = parseInt(mes);
+  if(!ano || !mes) return;
   let primeiroDia = `${ano}-${String(mes).padStart(2,'0')}-01`;
-  
-  // Último dia do mês
   let ultimoDiaNum = new Date(ano, mes, 0).getDate();
   let ultimoDia = `${ano}-${String(mes).padStart(2,'0')}-${String(ultimoDiaNum).padStart(2,'0')}`;
-  
-  document.getElementById('periodoDe').value = primeiroDia;
-  document.getElementById('periodoAte').value = ultimoDia;
-  
-  calcular();
-});
+  let de = document.getElementById('periodoDe');
+  let ate = document.getElementById('periodoAte');
+  if(de) de.value = primeiroDia;
+  if(ate) ate.value = ultimoDia;
+  console.log('Preenchido:', primeiroDia, ate ? ultimoDia : '');
+}
 
-// Inicia
-calcular();
-
-// BLOQUEIA O SCROLL DO MOUSE MUDAR O NÚMERO
-document.querySelectorAll('input[type="number"]').forEach(input => {
-  input.addEventListener('wheel', function(e){
-    e.preventDefault();
-    this.blur();
-  }, {passive: false});
-  
-  input.addEventListener('focus', function(){
-    this.addEventListener('wheel', e => e.preventDefault(), {passive: false});
+document.addEventListener('DOMContentLoaded', function(){
+  // DECIMAL, SEM SCROLL, SEM SETA
+  document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('input', mascaraAoDigitar);
+    input.addEventListener('blur', function(){ if(this.value !== '') mascaraDecimal(this); calcular(); });
+    input.addEventListener('focus', function(){ setTimeout(()=>this.select(),50); });
+    input.addEventListener('wheel', e => { e.preventDefault(); input.blur(); }, {passive:false});
+    input.addEventListener('keydown', e => { if(e.key==='ArrowUp'||e.key==='ArrowDown') e.preventDefault(); });
   });
-});
 
-// ENTER FUNCIONA COMO TAB
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    let inputs = Array.from(document.querySelectorAll('input'));
-    let index = inputs.indexOf(document.activeElement);
-    if (index > -1 && index + 1 < inputs.length) {
-      inputs[index + 1].focus();
+  // ENTER COMO TAB
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Enter' && e.target.tagName==='INPUT'){
+      e.preventDefault();
+      let inputs = Array.from(document.querySelectorAll('input:not([readonly]):not([disabled])'));
+      let idx = inputs.indexOf(document.activeElement);
+      if(idx>-1 && idx+1<inputs.length) inputs[idx+1].focus();
     }
+  });
+
+  // MÊS -> DATA
+  let mesAnoEl = document.getElementById('mesAno');
+  if(mesAnoEl){
+    mesAnoEl.addEventListener('change', preencherDatas);
+    mesAnoEl.addEventListener('input', preencherDatas);
   }
+
+  calcular();
 });
