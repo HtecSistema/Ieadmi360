@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório Semanal</title>
+<link rel="stylesheet" href="RelatorioSemanal.css">
+</head>
+<body>
+<div class="folha">
+  <div class="titulo topo">RELATÓRIO DE ENTRADA DE DÍZIMOS E OFERTAS DA SEMANAL</div>
+
+  <div class="header-grid">
+    <div><label>CONGREGAÇÃO</label><input id="congregacao" type="text"></div>
+    <div><label>DIRIGENTE</label><input id="dirigente" type="text"></div>
+    <div><label>TESOUREIRO</label><input id="tesoureiro" type="text"></div>
+    <div><label>MÊS LANÇAMENTO</label><input id="mesLanc" type="text" readonly placeholder="Automático"></div>
+    <div><label>DATA DO DIA</label><input id="dataDia" type="date"></div>
+    <div><label>DIA DA SEMANA</label><input id="diaSemana" type="text" readonly placeholder="Automático"></div>
+  </div>
+
+  <div class="bloco">
+    <div class="campo"><label>Valor dos Dízimos R$</label><input class="valor" id="dizimos" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta de Missões R$</label><input class="valor" id="ofertaMissoes" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta de Carnê Missionário R$</label><input class="valor" id="carne" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta do Culto R$</label><input class="valor" id="ofertaCulto" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>2º Oferta R$</label><input class="valor" id="oferta2" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>Oferta Construção R$</label><input class="valor" id="construcao" type="number" placeholder="0,00"></div>
+    <div class="campo"><label>Outros R$</label><input class="valor" id="outros" type="number" placeholder="0,00"></div>
+    <div class="campo total"><label>Total de Entrada R$</label><input id="totalEntrada" type="text" readonly></div>
+  </div>
+
+  <div class="assinaturas">
+    <div class="campo-ass"><label>Tesoureiro</label><input id="assTesoureiro" type="text"></div>
+    <div class="campo-ass"><label>Dirigente</label><input id="assDirigente" type="text"></div>
+  </div>
+
+  <div class="testemunhas">
+    <div class="titulo-sec">Testemunhas</div>
+    <div class="test-linha"><input id="func1" type="text" placeholder="Função"><input id="nome1" type="text" placeholder="Nome"></div>
+    <div class="test-linha"><input id="func2" type="text" placeholder="Função"><input id="nome2" type="text" placeholder="Nome"></div>
+    <div class="test-linha"><input id="func3" type="text" placeholder="Função"><input id="nome3" type="text" placeholder="Nome"></div>
+  </div>
+
+  <div class="botoes">
+    <button id="btnSalvar" class="btn salvar">💾 SALVAR</button>
+    <button id="btnLimpar" class="btn limpar">🧹 LIMPAR</button>
+    <button id="btnEnviar" class="btn enviar">📤 ENVIAR / IMPRIMIR</button>
+  </div>
+</div>
+
+<div id="print-area" style="display:none;"></div>
+<script src="RelatorioSemanal.js"></script>
+</body>
+</html>
