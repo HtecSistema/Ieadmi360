@@ -6,81 +6,73 @@
   <title>DTesouraria</title>
 <link rel="stylesheet" href="DTesouraria.css">
 <style>
-  body{
-    display:flex !important;
-    justify-content:flex-start !important;
-    align-items:flex-start !important;
-    background:#000 !important;
-    margin:0 !important;
-    padding:0 !important;
-  }
-  .folha{
-    margin:0 !important;
-    margin-right:auto !important;
-    align-self:flex-start !important;
-  }
+  body{display:flex !important; justify-content:flex-start !important; align-items:flex-start !important; background:#000 !important; margin:0 !important; padding:0 !important;}
+  .folha{margin:0 !important; margin-right:auto !important; align-self:flex-start !important;}
 </style>
 </head>
 <body>
 <div class="folha">
 <h1>Relatório Financeiro Mensal de Departamento</h1>
 <div class="sub">Controle de Entradas, Saídas e Fechamento de Caixa</div>
-<div class="top-botoes">
-  <button class="btn-top btn-salvar" id="btnSalvarTop">💾 Salvar</button>
-  <button class="btn-top btn-limpar-top" id="btnLimparTop">🧹 Limpar</button>
-  <button class="btn-top btn-excluir" id="btnExcluirTop">🗑️ Excluir</button>
-  <button class="btn-top btn-print-top" id="btnPrintTop">🖨️ Imprimir</button>
-</div>
+
 <div class="header-grid">
   <div class="field"><label>Depto:</label><input type="text" id="depto" value="DEPARTAMENTO DE JOVENS"></div>
   <div class="field"><label>Congregação:</label><input type="text" id="congregacao" value="SEDE - PARAGOMINAS"></div>
 </div>
 <div class="header-grid tri">
   <div class="field"><label>Mês / Ano</label><input type="month" id="mesAno"></div>
-  <div class="field"><label>Período: De</label><input type="date" id="periodoDe"></div>
-  <div class="field"><label>Até</label><input type="date" id="periodoAte"></div>
-</div>
-<div class="section">
-  <div class="section-title">Entradas</div>
-  <div class="linhas">
-    <div class="linha"><span>Ofertas</span><input type="number" inputmode="decimal" class="entrada" id="e1" placeholder="0,00"></div>
-    <div class="linha"><span>Ofertas das Consagrações</span><input type="number" inputmode="decimal" class="entrada" id="e2" placeholder="0,00"></div>
-    <div class="linha"><span>Outras arrecadações</span><input type="number" inputmode="decimal" class="entrada" id="e3" placeholder="0,00"></div>
-    <div class="linha total"><span>Total de Entradas</span><input type="text" id="totalEntradas" readonly value="0,00"></div>
-  </div>
-</div>
-<div class="section">
-  <div class="section-title">Saídas e Despesas</div>
-  <div class="linhas">
-    <div class="linha"><span>Dízimo p/ regional (10%)</span><input type="number" inputmode="decimal" class="saida" id="dizimo10" readonly placeholder="0,00"></div>
-    <div class="linha"><span>Repasse p/ liderança geral (20%)</span><input type="number" inputmode="decimal" class="saida" id="repasse20" readonly placeholder="0,00"></div>
-    <div class="linha"><span>Despesa c/ Pregadores</span><input type="number" inputmode="decimal" class="saida" id="s1" placeholder="0,00"></div>
-    <div class="linha"><span>Viagem p/ Brasília do coordenador</span><input type="number" inputmode="decimal" class="saida" id="s2" placeholder="0,00"></div>
-    <div class="linha"><span>Materiais de escritório</span><input type="number" inputmode="decimal" class="saida" id="s3" placeholder="0,00"></div>
-    <div class="linha"><span>Mídias (Cd's, Cópias, Vídeos)</span><input type="number" inputmode="decimal" class="saida" id="s4" placeholder="0,00"></div>
-    <div class="linha"><span>Despesas c/ eventos</span><input type="number" inputmode="decimal" class="saida" id="s5" placeholder="0,00"></div>
-    <div class="linha"><span>Outras despesas</span><input type="number" inputmode="decimal" class="saida" id="s6" placeholder="0,00"></div>
-    <div class="linha total"><span>Total de Saídas</span><input type="text" id="totalSaidas" readonly value="0,00"></div>
-  </div>
-</div>
-<div class="section fechamento">
-  <div class="section-title">Fechamento de Caixa</div>
-  <div class="linhas">
-    <div class="linha"><span>Caixa anterior</span><input type="number" inputmode="decimal" id="caixaAnterior" placeholder="0,00"></div>
-    <div class="linha"><span>Total de entradas</span><input type="text" id="confEntradas" readonly value="0,00"></div>
-    <div class="linha total"><span>Somas p/ conferências</span><input type="text" id="somaConf" readonly value="0,00"></div>
-    <div class="linha"><span>Total de saídas</span><input type="text" id="confSaidas" readonly value="0,00"></div>
-    <div class="linha total saldo"><span>Saldo de Caixa</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
-  </div>
-</div>
-<div class="assinaturas">
-  <div>Dirigente da congregação</div>
-  <div>Tesoureiro da Regional</div>
-  <div>Tesoureiro do Departamento</div>
-</div>
+  <div class="field"><label>Data Inicio</label><input type="date" id="periodoDe"></div>
+  <div class="field"><label>Data Final</label><input type="date" id="periodoAte"></div>
 </div>
 
-<!-- MODELO DE IMPRESSÃO IGUAL DA FOTO -->
+<!-- FECHAMENTO LADO A LADO LA EM CIMA -->
+<div class="section fechamento fechamento-topo">
+  <div class="section-title">Resumo / Fechamento de Caixa</div>
+  <div class="linhas lado-a-lado">
+    <div class="linha-mini"><span>Caixa anterior</span><input type="text" inputmode="numeric" class="valor" id="caixaAnterior" placeholder="0,00"></div>
+    <div class="linha-mini"><span>Total de entradas</span><input type="text" id="confEntradas" readonly value="0,00"></div>
+    <div class="linha-mini"><span>Somas p/ conferências</span><input type="text" id="somaConf" readonly value="0,00"></div>
+    <div class="linha-mini"><span>Total de saídas</span><input type="text" id="confSaidas" readonly value="0,00"></div>
+    <div class="linha-mini saldo-mini"><span>Saldo de Caixa</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">
+    <span>Entradas</span>
+    <div class="total-dentro"><span>TOTAL DE ENTRADAS</span><input type="text" id="totalEntradas" readonly value="0,00"></div>
+  </div>
+  <div class="linhas">
+    <div class="linha"><span>Ofertas</span><input type="text" inputmode="numeric" class="valor entrada" id="e1" placeholder="0,00"></div>
+    <div class="linha"><span>Ofertas das Consagrações</span><input type="text" inputmode="numeric" class="valor entrada" id="e2" placeholder="0,00"></div>
+    <div class="linha"><span>Outras arrecadações</span><input type="text" inputmode="numeric" class="valor entrada" id="e3" placeholder="0,00"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">
+    <span>Saídas e Despesas</span>
+    <div class="total-dentro"><span>TOTAL DE SAÍDAS</span><input type="text" id="totalSaidas" readonly value="0,00"></div>
+  </div>
+  <div class="linhas">
+    <div class="linha"><span>Dízimo p/ regional (10%)</span><input type="text" class="saida" id="dizimo10" readonly placeholder="0,00"></div>
+    <div class="linha"><span>Repasse p/ liderança geral (20%)</span><input type="text" class="saida" id="repasse20" readonly placeholder="0,00"></div>
+    <div class="linha"><span>Despesa c/ Pregadores</span><input type="text" inputmode="numeric" class="valor saida" id="s1" placeholder="0,00"></div>
+    <div class="linha"><span>Viagem p/ Brasília do coordenador</span><input type="text" inputmode="numeric" class="valor saida" id="s2" placeholder="0,00"></div>
+    <div class="linha"><span>Materiais de escritório</span><input type="text" inputmode="numeric" class="valor saida" id="s3" placeholder="0,00"></div>
+    <div class="linha"><span>Mídias (Cd's, Cópias, Vídeos)</span><input type="text" inputmode="numeric" class="valor saida" id="s4" placeholder="0,00"></div>
+    <div class="linha"><span>Despesas c/ eventos</span><input type="text" inputmode="numeric" class="valor saida" id="s5" placeholder="0,00"></div>
+    <div class="linha"><span>Outras despesas</span><input type="text" inputmode="numeric" class="valor saida" id="s6" placeholder="0,00"></div>
+  </div>
+</div>
+
+<div class="top-botoes bottom">
+  <button class="btn-top btn-salvar" id="btnSalvarTop">💾 SALVAR</button>
+  <button class="btn-top btn-limpar-top" id="btnLimparTop">🧹 LIMPAR</button>
+  <button class="btn-top btn-excluir" id="btnExcluirTop">🗑️ EXCLUIR</button>
+  <button class="btn-top btn-print-top" id="btnPrintTop">🖨️ IMPRIMIR</button>
+</div>
+</div>
 
 <div id="print-area" style="display:none;">
   <div class="print-header">
@@ -93,45 +85,30 @@
       <span>ieadmiparagominas@hotmail.com</span>
     </div>
   </div>
-
   <h2 class="print-title">RELATÓRIO FINANCEIRO MENSAL DE DEPARTAMENTO</h2>
-  <div class="print-line">
-    DEPTO.: <span id="p-depto">________________________</span> &nbsp;&nbsp;
-    CONGREGAÇÃO: <span id="p-cong">________________________</span>
-  </div>
-  <div class="print-line">
-    PERÍODO: <span id="p-de">___/___/___</span> a <span id="p-ate">___/___/___</span> de <span id="p-mes">________</span> de <span id="p-ano">20___</span>
-  </div>
-  
+  <div class="print-line">DEPTO.: <span id="p-depto"></span> CONGREGAÇÃO: <span id="p-cong"></span></div>
+  <div class="print-line">PERÍODO: <span id="p-de"></span> a <span id="p-ate"></span></div>
   <div class="print-section">Entradas</div>
-  <div class="print-row">Ofertas: <span class="dots"></span> <b id="p-e1">__________</b></div>
-  <div class="print-row">Ofertas das Consagrações: <span class="dots"></span> <b id="p-e2">__________</b></div>
-  <div class="print-row">Outras arrecadações: <span class="dots"></span> <b id="p-e3">__________</b></div>
-  <div class="print-row total">Total de Entradas: <span class="dots"></span> <b id="p-totalE">__________</b></div>
-
+  <div class="print-row">Ofertas: <span class="dots"></span> <b id="p-e1"></b></div>
+  <div class="print-row">Ofertas das Consagrações: <span class="dots"></span> <b id="p-e2"></b></div>
+  <div class="print-row">Outras arrecadações: <span class="dots"></span> <b id="p-e3"></b></div>
+  <div class="print-row total">Total de Entradas: <span class="dots"></span> <b id="p-totalE"></b></div>
   <div class="print-section">Saídas e Despesas</div>
-  <div class="print-row">Dízimo p/ regional: <span class="dots"></span> <b id="p-dizimo">__________</b></div>
-  <div class="print-row">Repasse p/ liderança geral (20%): <span class="dots"></span> <b id="p-repasse">__________</b></div>
-  <div class="print-row">Despesa c/ Pregadores: <span class="dots"></span> <b id="p-s1">__________</b></div>
-  <div class="print-row">Viagem p/ Brasília do coordenador: <span class="dots"></span> <b id="p-s2">__________</b></div>
-  <div class="print-row">Materiais de escritório: <span class="dots"></span> <b id="p-s3">__________</b></div>
-  <div class="print-row">Mídias (Cd's, Cópias, Vídeos e etc.): <span class="dots"></span> <b id="p-s4">__________</b></div>
-  <div class="print-row">Despesas c/ eventos: <span class="dots"></span> <b id="p-s5">__________</b></div>
-  <div class="print-row">Outras despesas [ <span id="p-outra-desc">__________</span> ] <span class="dots"></span> <b id="p-s6">__________</b></div>
-  <div class="print-row total">Total de Saídas: <span class="dots"></span> <b id="p-totalS">__________</b></div>
-
+  <div class="print-row">Dízimo p/ regional: <span class="dots"></span> <b id="p-dizimo"></b></div>
+  <div class="print-row">Repasse p/ liderança geral (20%): <span class="dots"></span> <b id="p-repasse"></b></div>
+  <div class="print-row">Despesa c/ Pregadores: <span class="dots"></span> <b id="p-s1"></b></div>
+  <div class="print-row">Viagem p/ Brasília do coordenador: <span class="dots"></span> <b id="p-s2"></b></div>
+  <div class="print-row">Materiais de escritório: <span class="dots"></span> <b id="p-s3"></b></div>
+  <div class="print-row">Mídias: <span class="dots"></span> <b id="p-s4"></b></div>
+  <div class="print-row">Despesas c/ eventos: <span class="dots"></span> <b id="p-s5"></b></div>
+  <div class="print-row">Outras despesas: <span class="dots"></span> <b id="p-s6"></b></div>
+  <div class="print-row total">Total de Saídas: <span class="dots"></span> <b id="p-totalS"></b></div>
   <div class="print-section">Fechamento de Caixa</div>
-  <div class="print-row">Caixa anterior: <span class="dots"></span> <b id="p-caixaAnt">__________</b></div>
-  <div class="print-row">Total de entradas: <span class="dots"></span> <b id="p-confE">__________</b></div>
-  <div class="print-row">Somas p/ conferências: <span class="dots"></span> <b id="p-somaConf">__________</b></div>
-  <div class="print-row">Total de saídas: <span class="dots"></span> <b id="p-confS">__________</b></div>
-  <div class="print-row total">Saldo de Caixa: <span class="dots"></span> <b id="p-saldo">__________</b></div>
-
-  <div class="print-ass">
-    <div>________________________<br>Dirigente da congregação</div>
-    <div>________________________<br>Tesoureiro da Regional</div>
-    <div>________________________<br>Tesoureiro do Departamento</div>
-  </div>
+  <div class="print-row">Caixa anterior: <span class="dots"></span> <b id="p-caixaAnt"></b></div>
+  <div class="print-row">Total de entradas: <span class="dots"></span> <b id="p-confE"></b></div>
+  <div class="print-row">Somas p/ conferências: <span class="dots"></span> <b id="p-somaConf"></b></div>
+  <div class="print-row">Total de saídas: <span class="dots"></span> <b id="p-confS"></b></div>
+  <div class="print-row total">Saldo de Caixa: <span class="dots"></span> <b id="p-saldo"></b></div>
   <div class="print-obs">Obs.: O departamento deve apresentar notas/recibos das despesas.</div>
 </div>
 <script src="DTesouraria.js"></script>
