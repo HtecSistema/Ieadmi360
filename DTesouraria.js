@@ -51,7 +51,6 @@ function preencherDatas(){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-  // DECIMAL, SEM SCROLL, SEM SETA
   document.querySelectorAll('input[type="number"]').forEach(input => {
     input.addEventListener('input', mascaraAoDigitar);
     input.addEventListener('blur', function(){ if(this.value !== '') mascaraDecimal(this); calcular(); });
@@ -59,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function(){
     input.addEventListener('wheel', e => { e.preventDefault(); input.blur(); }, {passive:false});
     input.addEventListener('keydown', e => { if(e.key==='ArrowUp'||e.key==='ArrowDown') e.preventDefault(); });
   });
-
-  // ENTER COMO TAB
   document.addEventListener('keydown', function(e){
     if(e.key==='Enter' && e.target.tagName==='INPUT'){
       e.preventDefault();
@@ -69,13 +66,10 @@ document.addEventListener('DOMContentLoaded', function(){
       if(idx>-1 && idx+1<inputs.length) inputs[idx+1].focus();
     }
   });
-
-  // MÊS -> DATA
   let mesAnoEl = document.getElementById('mesAno');
   if(mesAnoEl){
     mesAnoEl.addEventListener('change', preencherDatas);
     mesAnoEl.addEventListener('input', preencherDatas);
   }
-
   calcular();
 });
