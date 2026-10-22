@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ieadmi360</title>
+<title>Ieadmi360 - Htec</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#f8fafc;display:flex;min-height:100vh}
-.sidebar{width:280px;background:#fff;border-right:1px solid #e2e8f0;padding:16px;display:flex;flex-direction:column;gap:16px;position:fixed;height:100vh;overflow:auto}
+body{background:#f8fafc;display:flex;min-height:100vh;overflow:hidden}
+.sidebar{width:280px;background:#fff;border-right:1px solid #e2e8f0;padding:16px;display:flex;flex-direction:column;gap:16px;position:fixed;height:100vh;overflow:auto;z-index:100;transition:transform .3s ease}
+.sidebar.hidden{transform:translateX(-100%)}
 .top-logo{display:flex;align-items:center;gap:10px;font-weight:900}
 .icon-logo{width:34px;height:34px;border-radius:10px;background:#f1f5f9;display:grid;place-items:center}
 .user-box{background:#f8f7ff;border:1px solid #ede9fe;padding:10px 12px;border-radius:14px}
@@ -18,26 +19,32 @@ body{background:#f8fafc;display:flex;min-height:100vh}
 .item{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer}
 .item.active{background:#0f172a;color:#fff}
 .item.sair{margin-top:16px;background:#fff5f5;color:#dc2626;border:1px solid #fecaca}
-.main{margin-left:280px;flex:1;display:flex;flex-direction:column;height:100vh}
-.top-bar{background:#fff;border-bottom:1px solid #e2e8f0;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
-.conteudo{flex:1;overflow:auto;display:flex;flex-direction:column;align-items:flex-start;background:#f8fafc}
-.vazio{padding:40px 30px;color:#94a3b8;text-align:left;width:100%}
+.main{margin-left:280px;flex:1;display:flex;flex-direction:column;height:100vh;transition:margin .3s ease}
+.main.full{margin-left:0}
+.top-bar{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn-menu{background:#0f172a;color:#fff;border:none;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px}
+.conteudo{flex:1;overflow:auto;display:flex;flex-direction:column;background:#000}
+.vazio{flex:1;display:grid;place-items:center;color:#94a3b8;text-align:center;padding:20px;background:#f8fafc}
 iframe{width:100%;height:100%;border:none;background:#000;display:block}
-#formContainer{display:none;flex:1;flex-direction:column;width:100%;max-width:900px;align-self:flex-start;background:#000;border-right:1px solid #1a1a1a}
-.bar{padding:10px 14px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;width:100%}
+#formContainer{display:none;flex:1;flex-direction:column;width:100%}
+.bar{padding:10px 14px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}
+@media(max-width:800px){
+  .sidebar{width:85%}
+  .main{margin-left:0}
+}
 </style>
 </head>
 <body>
 
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
   <div class="top-logo"><div class="icon-logo">💠</div> Ieadmi360</div>
   <div class="user-box"><small>USUÁRIO LOGADO</small><strong>00425 - HELIO SOUZA SILVA</strong></div>
   <div class="label">PRINCIPAL</div>
   <div class="menu">
-    <div class="item">👑 ADMINISTRADOR</div>
-    <div class="item">📋 CADASTRO</div>
-    <div class="item" onclick="abrirForm('DTesouraria.html',this,'D TESOURARIA')">💰 D Tesouraria</div>
-    <div class="item" onclick="abrirForm('RelatorioSemanal.html',this,'RELATÓRIO SEMANAL')">🗓️ Relatório Semanal</div>
+    <div class="item" onclick="mostrarInicio()">👑 ADMINISTRADOR</div>
+    <div class="item" onclick="mostrarInicio()">📋 CADASTRO</div>
+    <div class="item" id="btnDT" onclick="abrirForm('DTesouraria.html',this,'D TESOURARIA')">💰 D Tesouraria</div>
+    <div class="item" id="btnRS" onclick="abrirForm('RelatorioSemanal.html',this,'RELATÓRIO SEMANAL')">🗓️ Relatório Semanal</div>
     <div class="item">📊 RELATÓRIO ADM</div>
     <div class="item">👤 RELATÓRIO USUÁRIO</div>
     <div class="item">🛠️ MANUTENÇÃO</div>
@@ -45,33 +52,75 @@ iframe{width:100%;height:100%;border:none;background:#000;display:block}
   </div>
 </div>
 
-<div class="main">
+<div class="main" id="main">
   <div class="top-bar">
+    <button class="btn-menu" id="btnToggle" onclick="toggleMenu()">☰ MENU</button>
     <div style="font-weight:900">SISTEMA <span style="color:#6366f1">HTEC</span> - SisIeadmi360</div>
-    <div style="font-size:11px;color:#64748b;font-weight:700">PARAGOMINAS</div>
+    <div style="font-size:11px;color:#64748b;font-weight:700" id="statusTop">PARAGOMINAS</div>
   </div>
   <div class="conteudo">
     <div id="inicio" class="vazio">
-        <div style="font-size:40px">📋</div>
-        <div style="font-weight:900;margin-top:8px;color:#0f172a;font-size:18px">Ieadmi360</div>
-        <div style="font-size:13px;margin-top:6px;color:#64748b">Clique em D Tesouraria ou Relatório Semanal no menu da esquerda</div>
+        <div>
+          <div style="font-size:40px">📋</div>
+          <div style="font-weight:900;margin-top:8px;color:#0f172a;font-size:18px">Ieadmi360</div>
+          <div style="font-size:13px;margin-top:6px">Clique em D Tesouraria ou Relatório Semanal no menu</div>
+        </div>
     </div>
     <div id="formContainer">
-      <div class="bar"><span id="tituloForm">FORMULÁRIO</span></div>
       <iframe id="iframeForm" src=""></iframe>
     </div>
   </div>
 </div>
 
 <script>
+let menuAberto = true;
+function toggleMenu(){
+  const sb = document.getElementById('sidebar');
+  const main = document.getElementById('main');
+  menuAberto = !menuAberto;
+  if(menuAberto){
+    sb.classList.remove('hidden');
+    main.classList.remove('full');
+    document.getElementById('btnToggle').innerHTML = '✕ FECHAR';
+  }else{
+    sb.classList.add('hidden');
+    main.classList.add('full');
+    document.getElementById('btnToggle').innerHTML = '☰ MENU';
+  }
+}
+
 function abrirForm(url, el, titulo){
   document.querySelectorAll('.menu .item').forEach(i=>i.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('inicio').style.display='none';
   document.getElementById('formContainer').style.display='flex';
-  document.getElementById('tituloForm').innerText = titulo;
   document.getElementById('iframeForm').src = url;
+  document.getElementById('statusTop').innerText = titulo;
+
+  // NO CELULAR, ESCONDE O MENU AUTOMATICAMENTE QUANDO CLICA
+  if(window.innerWidth <= 800 || true){ // sempre esconde quando abre, igual você pediu no vídeo
+    document.getElementById('sidebar').classList.add('hidden');
+    document.getElementById('main').classList.add('full');
+    document.getElementById('btnToggle').innerHTML = '☰ MENU';
+    menuAberto = false;
+  }
 }
+
+function mostrarInicio(){
+  document.querySelectorAll('.menu .item').forEach(i=>i.classList.remove('active'));
+  document.getElementById('inicio').style.display='grid';
+  document.getElementById('formContainer').style.display='none';
+  document.getElementById('iframeForm').src = '';
+  document.getElementById('statusTop').innerText = 'PARAGOMINAS';
+  // volta o menu
+  document.getElementById('sidebar').classList.remove('hidden');
+  document.getElementById('main').classList.remove('full');
+  document.getElementById('btnToggle').innerHTML = '✕ FECHAR';
+  menuAberto = true;
+}
+
+// começa com menu aberto
+toggleMenu(); toggleMenu();
 </script>
 
 </body>
