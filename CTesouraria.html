@@ -4,97 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Tesouraria Congregação</title>
-
-<!-- ISSO AQUI QUE COLOCA NA ESQUERDA -->
 <link rel="stylesheet" href="CTesouraria.css">
 <style>
-  body{
-    display:flex !important;
-    justify-content:flex-start !important;
-    align-items:flex-start !important;
-    background:#000 !important;
-    margin:0 !important;
-    padding:0 !important;
-  }
-  .folha{
-    margin:0 !important;
-    margin-right:auto !important;
-    align-self:flex-start !important;
-  }
+  body{ display:flex !important; justify-content:flex-start !important; align-items:flex-start !important; background:#d4d4d8 !important; margin:0 !important; padding:0 !important; }
+  .folha{ margin:0 !important; margin-right:auto !important; align-self:flex-start !important; }
+  .header-grid.tri{ display:grid !important; grid-template-columns:1fr 1fr 1fr !important; gap:6px !important; }
+  .field input:focus, .linha input:focus, .total-dentro input:focus{ border-color:#f59e0b !important; background:#fffbeb !important; box-shadow:0 0 0 3px rgba(245,158,11,0.25) !important; outline:none !important; }
+  .box-comp{ margin:-6px 0 10px 0; padding:8px 10px; background:#f0fdf4; border:1px dashed #22c55e; border-radius:10px; display:flex; align-items:center; gap:8px; }
+  .box-comp span{ font-size:9px; color:#15803d; font-weight:800; text-transform:uppercase; letter-spacing:.5px; }
+  .btn-anexo{ width:30px; height:30px; min-width:30px; border:1.5px solid #22c55e; background:#fff; border-radius:8px; cursor:pointer; }
+  .link-view{ font-size:11px; font-weight:500; margin-left:auto; text-decoration:underline; color:#1d4ed8; word-break:break-all; }
+  .btn-del-comp{ width:22px; height:22px; min-width:22px; border:1px solid #ef4444; background:#fee2e2; color:#dc2626; border-radius:6px; cursor:pointer; font-size:11px; font-weight:800; }
+  .section{ position:relative !important; }
+  .section-title{ display:flex !important; align-items:center !important; gap:6px !important; padding-right:30px !important; }
+  .btn-seta{ width:14px !important; height:14px !important; min-width:14px !important; border:1px solid #d4d4d8; background:#fff; border-radius:4px; cursor:pointer; font-size:7px !important; font-weight:900; color:#854d0e; display:flex; align-items:center; justify-content:center; line-height:1; position:absolute; top:8px; right:8px; z-index:5; }
+  .section.fechado .linhas{ display:none !important; }
+  .linha.total-baixo{ background:#fef9e7 !important; border-top:2px solid #f5d78e !important; margin-top:8px; }
+  .linha.total-baixo span{ font-weight:900 !important; color:#854d0e !important; }
+  .linha.total-baixo input{ font-weight:900 !important; background:#fff !important; }
 </style>
 </head>
 <body>
-
 <div class="folha">
   <div class="header-grid tri">
-    <div class="field"><label>Do dia</label><input type="date" id="doDia"></div>
-    <div class="field"><label>A</label><input type="date" id="aDia"></div>
-    <div class="field"><label>De</label><input type="month" id="deMes"></div>
+    <div class="field"><label>Mes Referente</label><input type="month" id="deMes"></div>
+    <div class="field"><label>Data Inicio</label><input type="date" id="doDia"></div>
+    <div class="field"><label>Data Final</label><input type="date" id="aDia"></div>
   </div>
   <div class="header-grid">
-    <div class="field"><label>Congregação</label><input type="text" id="congregacao" placeholder="NOME DA CONGREGAÇÃO"></div>
-    <div class="field"><label>Dirigente</label><input type="text" id="dirigente" placeholder="NOME DO DIRIGENTE"></div>
+    <div class="field"><label>Congregação</label><input type="text" id="congregacao"></div>
+    <div class="field"><label>Dirigente</label><input type="text" id="dirigente"></div>
   </div>
   <div class="header-grid">
-    <div class="field"><label>Tesoureiro</label><input type="text" id="tesoureiro" placeholder="NOME DO TESOUREIRO"></div>
+    <div class="field"><label>Tesoureiro</label><input type="text" id="tesoureiro"></div>
   </div>
-  <div class="section">
-    <div class="section-title"><span>Entrada de Caixa Anterior</span></div>
-    <div class="linhas">
-      <div class="linha"><span>Saldo Anterior</span><input type="text" inputmode="numeric" class="valor" id="saldoAnterior" placeholder="0,00"></div>
-    </div>
+ <div class="section" id="secEntradas">
+  <div class="section-title"><span>Entradas</span></div>
+  <button type="button" class="btn-seta" onclick="toggleSec('secEntradas', this)">▼</button>
+  <div class="linhas">
+    <div class="linha"><span>Dízimos</span><input type="text" inputmode="numeric" class="valor entrada" id="dizimos" placeholder="0"></div>
+    <div class="linha"><span>Ofertas</span><input type="text" inputmode="numeric" class="valor entrada" id="ofertas" placeholder="0"></div>
+    <div class="linha total-baixo"><span>TOTAL DE ENTRADAS</span><input type="text" id="totalEntradas" readonly value="0,00"></div>
   </div>
-  <div class="section">
-    <div class="section-title"><span>Entradas</span><div class="total-dentro"><span>TOTAL DE ENTRADAS</span><input type="text" id="totalEntradas" readonly value="0,00"></div></div>
-    <div class="linhas">
-      <div class="linha"><span>Dízimos</span><input type="text" inputmode="numeric" class="valor entrada" id="dizimos" placeholder="0,00"></div>
-      <div class="linha"><span>Ofertas</span><input type="text" inputmode="numeric" class="valor entrada" id="ofertas" placeholder="0,00"></div>
-    </div>
+</div>
+
+<div class="section" id="secRepasse">
+  <div class="section-title">
+    <span>Repasse</span>
   </div>
-  <div class="section">
-    <div class="section-title"><span>Saídas e Despesas</span><div class="total-dentro"><span>TOTAL DE SAÍDAS</span><input type="text" id="totalSaidas" readonly value="0,00"></div></div>
+  <button type="button" class="btn-seta" onclick="toggleSec('secRepasse', this)">▼</button>
+  <div class="linhas">
+    <div class="linha"><span>Repasse Dirigente 20%</span><input type="text" class="saida" id="gratif20" readonly placeholder="0"></div>
+    <div class="linha"><span>Repasse Missões 25%</span><input type="text" class="saida" id="obra25" readonly placeholder="0"></div>
+    <div class="linha"><span>Repasse Regional 35%</span><input type="text" id="repasse35" readonly placeholder="0"></div>
+    <div class="linha total-baixo"><span>TOTAL DE REPASSE</span><input type="text" id="confRepasse" readonly value="0,00"></div>
+  </div>
+</div>
+
+  <div class="section" id="secSaidas">
+    <div class="section-title"><span>Saídas e Despesas</span></div>
+    <button type="button" class="btn-seta" onclick="toggleSec('secSaidas', this)">▼</button>
     <div class="linhas">
-      <div class="linha"><span>Obra Missionária 25%</span><input type="text" class="saida" id="obra25" readonly placeholder="0,00"></div>
-      <div class="linha"><span>Repasse Regional 35%</span><input type="text" id="repasse35" readonly placeholder="0,00"></div>
-      <div class="linha"><span>Repasse Dirigente 20%</span><input type="text" class="saida" id="gratif20" readonly placeholder="0,00"></div>
-      <div class="linha"><span>Luz, Água e Telefone</span><input type="text" inputmode="numeric" class="valor saida" id="s1" placeholder="0,00"></div>
-      <div class="linha"><span>Material de Limpeza</span><input type="text" inputmode="numeric" class="valor saida" id="s2" placeholder="0,00"></div>
-      <div class="linha"><span>Despesa com Combustível</span><input type="text" inputmode="numeric" class="valor saida" id="s7" placeholder="0,00"></div>
-      <div class="linha"><span>Viagem p/ Brasília (10 parcelas)</span><input type="text" inputmode="numeric" class="valor saida" id="s11" placeholder="0,00"></div>
-      <div class="linha"><span>Assistência Social</span><input type="text" inputmode="numeric" class="valor saida" id="s14" placeholder="0,00"></div>
-      <div class="linha"><span>Material de Ceia</span><input type="text" inputmode="numeric" class="valor saida" id="s4" placeholder="0,00"></div>
-      <button type="button" id="btnVerMais" style="width:100%; margin:8px 0; padding:8px; background:#1e1e1e; border:1.5px dashed #3f3f46; border-radius:8px; color:#fbbf24; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; cursor:pointer;">▼ Ver mais despesas</button>
+      <div class="linha"><span>Luz, Água e Telefone</span><input type="text" inputmode="numeric" class="valor saida" id="s1" placeholder="0"></div>
+      <div class="box-comp" id="box_s1" style="display:none;"><input type="file" id="file_s1" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s1">📎</button><span>Anexar comprovante</span><a id="view_s1" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s1"><button type="button" class="btn-del-comp" data-id="s1">✕</button></div>
+      <div class="linha"><span>Material de Ceia</span><input type="text" inputmode="numeric" class="valor saida" id="s4" placeholder="0"></div>
+      <div class="box-comp" id="box_s4" style="display:none;"><input type="file" id="file_s4" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s4">📎</button><span>Anexar comprovante</span><a id="view_s4" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s4"><button type="button" class="btn-del-comp" data-id="s4">✕</button></div>
+      <div class="linha"><span>Material de Limpeza</span><input type="text" inputmode="numeric" class="valor saida" id="s2" placeholder="0"></div>
+      <div class="box-comp" id="box_s2" style="display:none;"><input type="file" id="file_s2" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s2">📎</button><span>Anexar comprovante</span><a id="view_s2" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s2"><button type="button" class="btn-del-comp" data-id="s2">✕</button></div>
+      <div class="linha"><span>Viagem p/ Brasília (10 parcelas)</span><input type="text" inputmode="numeric" class="valor saida" id="s11" placeholder="0"></div>
+      <div class="box-comp" id="box_s11" style="display:none;"><input type="file" id="file_s11" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s11">📎</button><span>Anexar comprovante</span><a id="view_s11" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s11"><button type="button" class="btn-del-comp" data-id="s11">✕</button></div>
+      <button type="button" id="btnVerMais" style="width:100%; margin:8px 0; padding:8px; background:#ffffff; border:1.5px dashed #a1a1aa; border-radius:8px; color:#854d0e; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; cursor:pointer;">▼ Mais despesas</button>
       <div id="despesasExtras" style="display:none;">
-        <div class="linha"><span>Material de Escritório e Consumo</span><input type="text" inputmode="numeric" class="valor saida" id="s3" placeholder="0,00"></div>
-        <div class="linha"><span>Despesa com Construção</span><input type="text" inputmode="numeric" class="valor saida" id="s5" placeholder="0,00"></div>
-        <div class="linha"><span>Despesa com Eventos</span><input type="text" inputmode="numeric" class="valor saida" id="s6" placeholder="0,00"></div>
-        <div class="linha"><span>Consertos em Geral</span><input type="text" inputmode="numeric" class="valor saida" id="s8" placeholder="0,00"></div>
-        <div class="linha"><span>Frete e Correios</span><input type="text" inputmode="numeric" class="valor saida" id="s9" placeholder="0,00"></div>
-        <div class="linha"><span>Prestação de Serviços</span><input type="text" inputmode="numeric" class="valor saida" id="s10" placeholder="0,00"></div>
-        <div class="linha"><span>Contador</span><input type="text" inputmode="numeric" class="valor saida" id="s12" placeholder="0,00"></div>
-        <div class="linha"><span>Prestação de Terreno</span><input type="text" inputmode="numeric" class="valor saida" id="s13" placeholder="0,00"></div>
+        <div class="linha"><span>Assistência Social</span><input type="text" inputmode="numeric" class="valor saida" id="s14" placeholder="0"></div>
+        <div class="box-comp" id="box_s14" style="display:none;"><input type="file" id="file_s14" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s14">📎</button><span>Anexar comprovante</span><a id="view_s14" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s14"><button type="button" class="btn-del-comp" data-id="s14">✕</button></div>
+        <div class="linha"><span>Combustível</span><input type="text" inputmode="numeric" class="valor saida" id="s7" placeholder="0"></div>
+        <div class="box-comp" id="box_s7" style="display:none;"><input type="file" id="file_s7" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s7">📎</button><span>Anexar comprovante</span><a id="view_s7" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s7"><button type="button" class="btn-del-comp" data-id="s7">✕</button></div>
+        <div class="linha"><span>Consertos</span><input type="text" inputmode="numeric" class="valor saida" id="s8" placeholder="0"></div><div class="box-comp" id="box_s8" style="display:none;"><input type="file" id="file_s8" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s8">📎</button><span>Anexar comprovante</span><a id="view_s8" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s8"><button type="button" class="btn-del-comp" data-id="s8">✕</button></div>
+        <div class="linha"><span>Contador</span><input type="text" inputmode="numeric" class="valor saida" id="s12" placeholder="0"></div><div class="box-comp" id="box_s12" style="display:none;"><input type="file" id="file_s12" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s12">📎</button><span>Anexar comprovante</span><a id="view_s12" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s12"><button type="button" class="btn-del-comp" data-id="s12">✕</button></div>
+        <div class="linha"><span>Construção</span><input type="text" inputmode="numeric" class="valor saida" id="s5" placeholder="0"></div><div class="box-comp" id="box_s5" style="display:none;"><input type="file" id="file_s5" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s5">📎</button><span>Anexar comprovante</span><a id="view_s5" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s5"><button type="button" class="btn-del-comp" data-id="s5">✕</button></div>
+        <div class="linha"><span>Eventos</span><input type="text" inputmode="numeric" class="valor saida" id="s6" placeholder="0"></div><div class="box-comp" id="box_s6" style="display:none;"><input type="file" id="file_s6" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s6">📎</button><span>Anexar comprovante</span><a id="view_s6" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s6"><button type="button" class="btn-del-comp" data-id="s6">✕</button></div>
+        <div class="linha"><span>Frete e Correios</span><input type="text" inputmode="numeric" class="valor saida" id="s9" placeholder="0"></div><div class="box-comp" id="box_s9" style="display:none;"><input type="file" id="file_s9" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s9">📎</button><span>Anexar comprovante</span><a id="view_s9" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s9"><button type="button" class="btn-del-comp" data-id="s9">✕</button></div>
+        <div class="linha"><span>Material de Expediente</span><input type="text" inputmode="numeric" class="valor saida" id="s3" placeholder="0"></div><div class="box-comp" id="box_s3" style="display:none;"><input type="file" id="file_s3" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s3">📎</button><span>Anexar comprovante</span><a id="view_s3" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s3"><button type="button" class="btn-del-comp" data-id="s3">✕</button></div>
+        <div class="linha"><span>Prestação de Serviços</span><input type="text" inputmode="numeric" class="valor saida" id="s10" placeholder="0"></div><div class="box-comp" id="box_s10" style="display:none;"><input type="file" id="file_s10" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s10">📎</button><span>Anexar comprovante</span><a id="view_s10" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s10"><button type="button" class="btn-del-comp" data-id="s10">✕</button></div>
+        <div class="linha"><span>Prestação de Terreno</span><input type="text" inputmode="numeric" class="valor saida" id="s13" placeholder="0"></div><div class="box-comp" id="box_s13" style="display:none;"><input type="file" id="file_s13" accept="image/*,.pdf" hidden><button type="button" class="btn-anexo" data-id="s13">📎</button><span>Anexar comprovante</span><a id="view_s13" class="link-view" target="_blank" style="display:none;"></a><input type="hidden" id="link_s13"><button type="button" class="btn-del-comp" data-id="s13">✕</button></div>
       </div>
+      <div class="linha total-baixo"><span>TOTAL DE SAÍDAS</span><input type="text" id="totalSaidas" readonly value="0,00"></div>
     </div>
   </div>
-  <div class="section">
+  <div class="section" id="secEstorno">
     <div class="section-title"><span>entrada/Estorno do Dirigente</span></div>
+    <button type="button" class="btn-seta" onclick="toggleSec('secEstorno', this)">▼</button>
     <div class="linhas">
-      <div class="linha"><span>(-) Dízimo de Prebenda 10%</span><input type="text" class="saida" id="prebenda10" readonly placeholder="0,00"></div>
-      <div class="linha"><span>(-) Carnê de Missões</span><input type="text" inputmode="numeric" class="valor" id="carneMissoes" placeholder="0,00"></div>
-      <div class="linha"><span>(-) Oferta do Milho</span><input type="text" inputmode="numeric" class="valor" id="ofertaMilho" placeholder="0,00"></div>
-      <div class="linha total saldo"><span>Líquido p/ Dirigente</span><input type="text" id="cxGratif" readonly placeholder="0,00"></div>
+      <div class="linha"><span>(-) Dízimo de Prebenda 10%</span><input type="text" class="saida" id="prebenda10" readonly placeholder="0"></div>
+      <div class="linha"><span>(-) Carnê de Missões</span><input type="text" inputmode="numeric" class="valor" id="carneMissoes" placeholder="0"></div>
+      <div class="linha"><span>(-) Oferta do Milho</span><input type="text" inputmode="numeric" class="valor" id="ofertaMilho" placeholder="0"></div>
+      <div class="linha total saldo"><span>Líquido p/ Dirigente</span><input type="text" id="cxGratif" readonly placeholder="0"></div>
     </div>
   </div>
   <div class="section fechamento">
     <div class="section-title">Fechamento do Caixa</div>
     <div class="linhas">
-      <div class="linha"><span>Saldo Anterior</span><input type="text" id="confSaldoAnt" readonly value="0,00"></div>
+ <div class="linha"><span>Saldo Anterior</span><input type="text" inputmode="numeric" class="valor" id="confSaldoAnt" placeholder="0"></div>
       <div class="linha"><span>Total de Entrada</span><input type="text" id="confEntrada" readonly value="0,00"></div>
       <div class="linha"><span>Total Conferência (SA + TE)</span><input type="text" id="somaConf" readonly value="0,00"></div>
       <div class="linha"><span>Total de Saída</span><input type="text" id="confSaida" readonly value="0,00"></div>
-      <div class="linha repasse"><span>Total de repasse</span><input type="text" id="confRepasse" readonly value="0,00"></div>
       <div class="linha total saldo"><span>Saldo do Caixa</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
-      <div class="linha total"><span>Dízimo do Dirigente</span><input type="text" inputmode="numeric" class="valor" id="dizimoDirigente" placeholder="0,00"></div>
+      <div class="linha total"><span>Dízimo secular do Dirigente</span><input type="text" inputmode="numeric" class="valor" id="dizimoDirigente" placeholder="0"></div>
     </div>
   </div>
   <div class="top-botoes bottom">
@@ -105,5 +120,216 @@
   </div>
 </div>
 <script src="CTesouraria.js"></script>
+<script>
+function toggleSec(id, btn){
+  const sec = document.getElementById(id);
+  if(!sec) return;
+  sec.classList.toggle('fechado');
+  btn.innerText = sec.classList.contains('fechado') ? '▲' : '▼';
+}
+function parseBR(v){ if(!v) return 0; let s=v.toString().replace(/\./g,'').replace(',', '.').replace(/[^0-9.-]/g,''); const n=parseFloat(s); return isNaN(n)?0:n; }
+function formatarMoedaBR(v){
+  if(!v) return '';
+  let limpo=v.toString().replace(/\s/g,'').replace('R$','').trim().replace(/\./g,'').replace(',', '.').replace(/[^0-9.-]/g,'');
+  let num=parseFloat(limpo);
+  if(isNaN(num)||num===0) return '';
+  return num.toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function formatarTamanho(bytes){
+  if(bytes<1024) return bytes+' B';
+  if(bytes<1024*1024) return (bytes/1024).toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2})+' KB';
+  return (bytes/(1024*1024)).toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2})+' MB';
+}
+function dataURLparaBlob(dataURL){
+  let arr=dataURL.split(','), mime=arr[0].match(/:(.*?);/)[1], bstr=atob(arr[1]), n=bstr.length, u8arr=new Uint8Array(n);
+  while(n--) u8arr[n]=bstr.charCodeAt(n);
+  return new Blob([u8arr],{type:mime});
+}
+function salvarSilencioso(){
+  const a = window.alert;
+  window.alert = function(){};
+  try{ if(typeof salvar==='function') salvar(false); }catch(e){ try{ if(typeof salvar==='function') salvar(); }catch(e){} }
+  finally{ setTimeout(()=>{ window.alert = a; }, 100); }
+}
+function excluirComprovante(id){
+  const fileEl=document.getElementById('file_'+id);
+  const linkEl=document.getElementById('link_'+id);
+  const view=document.getElementById('view_'+id);
+  const box=document.getElementById('box_'+id);
+  const temComp = linkEl && linkEl.value !== '';
+  if(!temComp){
+    if(box) box.style.display='none';
+    localStorage.setItem('fechado_'+id, '1');
+    return;
+  }
+  if(fileEl) fileEl.value='';
+  if(linkEl) linkEl.value='';
+  localStorage.removeItem('nome_'+id);
+  if(view){
+    if(view.href.startsWith('blob:')) URL.revokeObjectURL(view.href);
+    view.href=''; view.style.display='none'; view.innerText=''; view.dataset.dataurl='';
+  }
+  if(box) box.style.display='none';
+  localStorage.removeItem('fechado_'+id);
+  salvarSilencioso();
+}
+function checarComprovantes(){
+  for(let i=1;i<=14;i++){
+    const input=document.getElementById('s'+i);
+    const box=document.getElementById('box_s'+i);
+    const link=document.getElementById('link_s'+i)?.value;
+    if(!input||!box) continue;
+    const valor=parseBR(input.value);
+    const vazio = input.value.trim()==='';
+    const fechado = localStorage.getItem('fechado_s'+i)==='1';
+    if(link){
+      box.style.display='flex';
+      localStorage.removeItem('fechado_s'+i);
+      continue;
+    }
+    if(vazio || valor===0){
+      box.style.display='none';
+      if(vazio) localStorage.removeItem('fechado_s'+i);
+      continue;
+    }
+    if(fechado){
+      box.style.display='none';
+      continue;
+    }
+    if(valor>0){
+      box.style.display='flex';
+    } else {
+      box.style.display='none';
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  const camposValor=document.querySelectorAll('input.valor');
+  camposValor.forEach((input, idx)=>{
+    input.addEventListener('focus', function(){ this.select(); });
+    input.addEventListener('blur', function(){
+      const valorAntes = this.value;
+      this.value=formatarMoedaBR(this.value);
+      if(this.value==='' && valorAntes!==''){
+        const id=this.id;
+        if(id.startsWith('s')){
+          localStorage.removeItem('fechado_'+id);
+        }
+      }
+      if(typeof calcular==='function') calcular();
+      checarComprovantes();
+    });
+    input.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){
+        e.preventDefault();
+        this.value=formatarMoedaBR(this.value);
+        if(typeof calcular==='function') calcular();
+        checarComprovantes();
+        let next=null;
+        for(let j=idx+1;j<camposValor.length;j++){
+          if(!camposValor[j].readOnly && camposValor[j].offsetParent!==null){ next=camposValor[j]; break; }
+        }
+        if(next){ next.focus(); next.select(); }
+      }
+    });
+    input.addEventListener('input', ()=>{ 
+      if(typeof calcular==='function') calcular(); 
+      checarComprovantes(); 
+    });
+  });
+  document.querySelectorAll('.btn-anexo').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      localStorage.removeItem('fechado_'+btn.dataset.id);
+      document.getElementById('file_'+btn.dataset.id).click(); 
+    });
+  });
+  document.querySelectorAll('.btn-del-comp').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ excluirComprovante(btn.dataset.id); });
+  });
+  document.querySelectorAll('input[type=file][id^=file_]').forEach(finput=>{
+    finput.addEventListener('change', ()=>{
+      const id=finput.id.replace('file_','');
+      const file=finput.files[0];
+      if(!file) return;
+      const nome=file.name;
+      const tamanho=formatarTamanho(file.size);
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const dataURL=e.target.result;
+        document.getElementById('link_'+id).value=dataURL;
+        localStorage.setItem('nome_'+id, nome+' ('+tamanho+')');
+        localStorage.removeItem('fechado_'+id);
+        const blob=dataURLparaBlob(dataURL);
+        const blobUrl=URL.createObjectURL(blob);
+        const view=document.getElementById('view_'+id);
+        view.href=blobUrl;
+        view.dataset.dataurl=dataURL;
+        view.style.display='inline';
+        view.innerText=nome+' ('+tamanho+')';
+        document.getElementById('box_'+id).style.display='flex';
+        salvarSilencioso();
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  document.querySelectorAll('.link-view').forEach(a=>{
+    a.addEventListener('click', function(e){
+      if(this.dataset.dataurl){
+        e.preventDefault();
+        const blob=dataURLparaBlob(this.dataset.dataurl);
+        const blobUrl=URL.createObjectURL(blob);
+        window.open(blobUrl, '_blank');
+      }
+    });
+  });
+  const btnLimpar=document.getElementById('btnLimpar');
+  if(btnLimpar){
+    btnLimpar.addEventListener('click', ()=>{
+      setTimeout(()=>{
+        for(let i=1;i<=14;i++){
+          const id='s'+i;
+          const fileEl=document.getElementById('file_'+id);
+          const linkEl=document.getElementById('link_'+id);
+          const view=document.getElementById('view_'+id);
+          const box=document.getElementById('box_'+id);
+          if(fileEl) fileEl.value='';
+          if(linkEl) linkEl.value='';
+          localStorage.removeItem('nome_'+id);
+          localStorage.removeItem('fechado_'+id);
+          if(view){
+            if(view.href.startsWith('blob:')) URL.revokeObjectURL(view.href);
+            view.href=''; view.style.display='none'; view.innerText=''; view.dataset.dataurl='';
+          }
+          if(box) box.style.display='none';
+        }
+      }, 150);
+    });
+  }
+  try{
+    const raw=localStorage.getItem('tesCong');
+    if(raw){
+      const dados=JSON.parse(raw);
+      Object.keys(dados).forEach(k=>{
+        if(k.startsWith('link_s')&&dados[k]){
+          const id=k.replace('link_','');
+          const view=document.getElementById('view_'+id);
+          const box=document.getElementById('box_'+id);
+          const nomeSalvo=localStorage.getItem('nome_'+id)||'ver comprovante';
+          if(view){
+            const blob=dataURLparaBlob(dados[k]);
+            const blobUrl=URL.createObjectURL(blob);
+            view.href=blobUrl;
+            view.dataset.dataurl=dados[k];
+            view.style.display='inline';
+            view.innerText=nomeSalvo;
+          }
+          if(box) box.style.display='flex';
+        }
+      });
+    }
+  }catch(e){}
+  checarComprovantes();
+});
+</script>
 </body>
 </html>
