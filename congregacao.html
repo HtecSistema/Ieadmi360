@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEADMI - GESTÃO COMPLETA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="congregacao.css">
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="secao">DADOS DA CONGREGAÇÃO</div>
+<div class="row-top">
+  <div class="col-cod"><label>COD *</label><input id="cod" placeholder="0001"></div>
+  <div class="col-cong"><label>CONGREGAÇÃO *</label><input id="congregacao"></div>
+  <div class="col-classe"><label>CLASSE</label><select id="classe"><option value=""></option><option>Sede</option><option>Congregação</option><option>Ponto de Pregação</option><option>Frente Missionária</option></select></div>
+</div>
+<div class="row-mid">
+  <div class="col-setor"><label>SETOR</label><input id="setor"></div>
+  <div class="col-end"><label>ENDEREÇO</label><input id="endereco"></div>
+  <div class="col-num"><label>NUMERO</label><input id="numero"></div>
+</div>
+<div class="row3"><div><label>BAIRRO</label><input id="bairro"></div><div><label>CIDADE</label><input id="cidade" value="Paragominas"></div><div><label>UF</label><input id="uf" value="PA"></div></div>
+<div class="secao">PASTOR / DIRIGENTE</div>
+<label>PASTOR / DIRIGENTE</label><input id="pastor_dirigente">
+<div class="row2"><div><label>CPF PR</label><input id="cpfpr" class="cpf"></div><div><label>CONTATO PR</label><input id="contato_pr"></div></div>
+<div class="secao">SELECIONE O QUE DESEJA CADASTRAR</div>
+<div class="checks">
+<div class="check-item" id="ci_sec"><input type="checkbox" id="chk_sec" onchange="toggleDept('sec')"><label for="chk_sec">SECRETÁRIOS</label></div>
+<div class="check-item" id="ci_tes"><input type="checkbox" id="chk_tes" onchange="toggleDept('tes')"><label for="chk_tes">TESOUREIROS</label></div>
+<div class="check-item" id="ci_jd"><input type="checkbox" id="chk_jd" onchange="toggleDept('jd')"><label for="chk_jd">JARDIM DE DEUS</label></div>
+<div class="check-item" id="ci_sh"><input type="checkbox" id="chk_sh" onchange="toggleDept('sh')"><label for="chk_sh">SHALOM</label></div>
+<div class="check-item" id="ci_bv"><input type="checkbox" id="chk_bv" onchange="toggleDept('bv')"><label for="chk_bv">BRASA VIVA</label></div>
+<div class="check-item" id="ci_he"><input type="checkbox" id="chk_he" onchange="toggleDept('he')"><label for="chk_he">HEROINAS</label></div>
+<div class="check-item" id="ci_hr"><input type="checkbox" id="chk_hr" onchange="toggleDept('hr')"><label for="chk_hr">HEROIS</label></div>
+<div class="check-item" id="ci_ebd"><input type="checkbox" id="chk_ebd" onchange="toggleDept('ebd')"><label for="chk_ebd">EBD</label></div>
+<div class="check-item" id="ci_tv"><input type="checkbox" id="chk_tv" onchange="toggleDept('tv')"><label for="chk_tv">TARDE DA VITÓRIA</label></div>
+<div class="check-item" id="ci_mis"><input type="checkbox" id="chk_mis" onchange="toggleDept('mis')"><label for="chk_mis">MISSÕES</label></div>
+</div>
+<div id="dept_sec" class="dept-box">
+<div class="secao">SECRETÁRIOS</div>
+<div class="row-matricula"><div><label>MATRICULA</label><input id="matsec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="cpfsec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="contato_sec1"></div></div>
+<div class="row-matricula"><div><label>MATRICULA</label><input id="matsec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="cpfsec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="contato_sec2"></div></div>
+</div>
+<div id="dept_tes" class="dept-box">
+<div class="secao">TESOUREIROS</div>
+<div class="row-matricula"><div><label>MATRICULA</label><input id="mattes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="cpftes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="contato_tes1"></div></div>
+<div class="row-matricula"><div><label>MATRICULA</label><input id="mattes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="cpftes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="contato_tes2"></div></div>
+</div>
+<div id="dept_jd" class="dept-box"><div class="secao">JARDIM DE DEUS</div>
+<div class="row-matricula"><div><label>MAT</label><input id="jd_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="jd_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="jd_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="jd_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="jd_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="jd_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="jd_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="jd_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="jd_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="jd_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="jd_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="jd_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="jd_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="jd_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="jd_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="jd_cont_tes2"></div></div>
+</div>
+<div id="dept_sh" class="dept-box"><div class="secao">SHALOM</div>
+<div class="row-matricula"><div><label>MAT</label><input id="sh_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="sh_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="sh_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="sh_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="sh_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="sh_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="sh_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="sh_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="sh_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="sh_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="sh_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="sh_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="sh_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="sh_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="sh_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="sh_cont_tes2"></div></div>
+</div>
+<div id="dept_bv" class="dept-box"><div class="secao">BRASA VIVA</div>
+<div class="row-matricula"><div><label>MAT</label><input id="bv_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="bv_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="bv_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="bv_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="bv_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="bv_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="bv_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="bv_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="bv_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="bv_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="bv_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="bv_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="bv_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="bv_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="bv_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="bv_cont_tes2"></div></div>
+</div>
+<div id="dept_he" class="dept-box"><div class="secao">HEROINAS</div>
+<div class="row-matricula"><div><label>MAT</label><input id="he_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="he_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="he_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="he_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="he_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="he_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="he_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="he_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="he_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="he_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="he_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="he_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="he_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="he_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="he_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="he_cont_tes2"></div></div>
+</div>
+<div id="dept_hr" class="dept-box"><div class="secao">HEROIS</div>
+<div class="row-matricula"><div><label>MAT</label><input id="hr_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="hr_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="hr_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="hr_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="hr_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="hr_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="hr_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="hr_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="hr_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="hr_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="hr_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="hr_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="hr_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="hr_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="hr_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="hr_cont_tes2"></div></div>
+</div>
+<div id="dept_ebd" class="dept-box"><div class="secao">EBD</div>
+<div class="row-matricula"><div><label>MAT</label><input id="ebd_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="ebd_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="ebd_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="ebd_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="ebd_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="ebd_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="ebd_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="ebd_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="ebd_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="ebd_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="ebd_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="ebd_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="ebd_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="ebd_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="ebd_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="ebd_cont_tes2"></div></div>
+</div>
+<div id="dept_tv" class="dept-box"><div class="secao">TARDE DA VITÓRIA</div>
+<div class="row-matricula"><div><label>MAT</label><input id="tv_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="tv_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="tv_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="tv_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="tv_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="tv_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="tv_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="tv_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="tv_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="tv_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="tv_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="tv_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="tv_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="tv_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="tv_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="tv_cont_tes2"></div></div>
+</div>
+<div id="dept_mis" class="dept-box"><div class="secao">MISSÕES</div>
+<div class="row-matricula"><div><label>MAT</label><input id="mis_mat_sec1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 1</label><input id="mis_sec1"></div></div>
+<div class="row2"><div><label>CPF SEC 1</label><input id="mis_cpf_sec1" class="cpf"></div><div><label>CONTATO SEC 1</label><input id="mis_cont_sec1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="mis_mat_sec2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>SECRETÁRIO 2</label><input id="mis_sec2"></div></div>
+<div class="row2"><div><label>CPF SEC 2</label><input id="mis_cpf_sec2" class="cpf"></div><div><label>CONTATO SEC 2</label><input id="mis_cont_sec2"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="mis_mat_tes1" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 1</label><input id="mis_tes1"></div></div>
+<div class="row2"><div><label>CPF TES 1</label><input id="mis_cpf_tes1" class="cpf"></div><div><label>CONTATO TES 1</label><input id="mis_cont_tes1"></div></div>
+<div class="row-matricula"><div><label>MAT</label><input id="mis_mat_tes2" class="matricula" maxlength="5" placeholder="00000"></div><div><label>TESOUREIRO 2</label><input id="mis_tes2"></div></div>
+<div class="row2"><div><label>CPF TES 2</label><input id="mis_cpf_tes2" class="cpf"></div><div><label>CONTATO TES 2</label><input id="mis_cont_tes2"></div></div>
+</div>
+<div class="toolbar">
+<button class="btn btn-dark" onclick="salvar()">💾 SALVAR</button>
+<button class="btn btn-ghost" onclick="limpar()">LIMPAR</button>
+<button class="btn btn-ghost" id="btnCancelarEdit" style="display:none" onclick="cancelarEdicao()">CANCELAR</button>
+</div>
+</div>
+<div class="card"><h2>CONGREGAÇÕES</h2><div class="searchbar"><input id="busca" placeholder="BUSCAR..." oninput="renderTabela()"></div><div class="table-wrap"><table id="tabela"><thead><tr><th>COD</th><th>CONGREGAÇÃO</th><th>PASTOR</th><th>AÇÕES</th></tr></thead><tbody></tbody></table><div id="empty" style="padding:15px;text-align:center;color:#555;font-size:10px">NENHUMA CADASTRADA</div></div></div>
+</div>
+<div id="modal" class="modal-bg"><div class="modal"><h3 id="modalTitle" style="color:#ff8c00;font-size:12px"></h3><p id="modalMsg" style="margin-top:6px;color:#aaa;font-size:11px"></p><div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-ghost" style="flex:1" onclick="fecharModal()">OK</button><button class="btn btn-dark" style="flex:1;background:#b91c1c;color:#fff;display:none" id="modalConfirm">EXCLUIR</button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="congregacao.js"></script>
+</body>
+</html>

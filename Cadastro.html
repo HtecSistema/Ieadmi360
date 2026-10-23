@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#f1f3f5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>IEADMI - Ficha</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Cadastro.css">
+</head>
+<body>
+
+<main class="app-main">
+  <form id="formFicha" class="ficha-mobile" onsubmit="return false">
+    
+    <div class="acc open">
+      <button class="acc-head" type="button" onclick="toggleAcc(this)"><span>CONGREGAÇÃO</span><i class="chev">▼</i></button>
+      <div class="acc-body">
+        <div class="grid-cod-cong-class">
+          <div class="field cod-small"><label>COD *</label><input id="cod" inputmode="numeric" pattern="[0-9]*" maxlength="5" placeholder="001"></div>
+          <div class="field"><label>CONGREGAÇÃO</label><select id="congregacao"></select></div>
+          <div class="field"><label>CLASSIFICAÇÃO</label><select id="classificacao"><option value="">Selecione</option><option>CONGREGAÇÃO</option><option>SUBSEDE</option><option>SEDE</option></select></div>
+        </div>
+
+        <div class="grid-cidade-uf-alinhado">
+          <div class="field"><label>CIDADE CONG.</label><input id="cidade_cong" value="Paragominas"></div>
+          <div class="field uf-small"><label>UF CONG</label>
+            <select id="uf_cong">
+              <option value="AC">ACRE</option><option value="AL">ALAGOAS</option><option value="AP">AMAPA</option><option value="AM">AMAZONAS</option><option value="BA">BAHIA</option><option value="CE">CEARA</option><option value="DF">DISTRITO FEDERAL</option><option value="ES">ESPIRITO SANTO</option><option value="GO">GOIAS</option><option value="MA">MARANHAO</option><option value="MT">MATO GROSSO</option><option value="MS">MATO GROSSO DO SUL</option><option value="MG">MINAS GERAIS</option><option value="PA" selected>PARA</option><option value="PB">PARAIBA</option><option value="PR">PARANA</option><option value="PE">PERNAMBUCO</option><option value="PI">PIAUI</option><option value="RJ">RIO DE JANEIRO</option><option value="RN">RIO GRANDE DO NORTE</option><option value="RS">RIO GRANDE DO SUL</option><option value="RO">RONDONIA</option><option value="RR">RORAIMA</option><option value="SC">SANTA CATARINA</option><option value="SP">SAO PAULO</option><option value="SE">SERGIPE</option><option value="TO">TOCANTINS</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid4">
+          <div class="field"><label>CATEGORIA</label><select id="categoria"><option value="">Selecione</option><option>CONGREGADO</option><option>MEMBRO</option><option>OBREIRO</option><option>MINISTRO</option></select></div>
+          <div class="field"><label>MAT LOCAL</label><input id="mat_local" inputmode="numeric"></div>
+          <div class="field"><label>CGADB</label><input id="cgadb" inputmode="numeric"></div>
+          <div class="field"><label>COMADEBG</label><input id="comadebg" inputmode="numeric"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="acc open">
+      <button class="acc-head" type="button" onclick="toggleAcc(this)"><span>DADOS PESSOAIS</span><i class="chev">▼</i></button>
+      <div class="acc-body">
+        <div class="field"><label>NOME COMPLETO *</label><input id="nome" autocapitalize="words" autocomplete="name"></div>
+        <div class="grid3">
+          <div class="field"><label>CPF</label><input id="cpf" inputmode="numeric" autocomplete="off"></div>
+          <div class="field"><label>WHATSAPP</label><input id="fonea" inputmode="tel" autocomplete="tel"></div>
+          <div class="field">
+            <label class="label-com-auto">NASCIMENTO <span id="mes_nascimento_badge" class="mes-auto-badge">-</span></label>
+            <input id="nascito" type="date">
+            <input type="hidden" id="mes_nascimento">
+          </div>
+        </div>
+        <div class="field"><label>NOME DA MAE</label><input id="mae" autocapitalize="words"></div>
+        <div class="grid2"><div class="field"><label>SEXO</label><select id="sexo"><option value="">Selecione</option><option>Masculino</option><option>Feminino</option></select></div><div class="field"><label>E-MAIL</label><input id="email" type="email" autocomplete="email"></div></div>
+      </div>
+    </div>
+
+    <div class="acc"><button class="acc-head" type="button" onclick="toggleAcc(this)"><span>ENDEREÇO</span><i class="chev">▼</i></button>
+      <div class="acc-body">
+        <div class="grid-cep-log-num">
+          <div class="field"><label>CEP BUSCA AUTO</label><input id="cep" inputmode="numeric"></div>
+          <div class="field"><label>LOGRADOURO</label><input id="logradouro"></div>
+          <div class="field"><label>NUMERO</label><input id="numero" inputmode="numeric"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label>BAIRRO</label><input id="bairro"></div>
+          <div class="field"><label>COMPLEMENTO</label><input id="complemento"></div>
+        </div>
+        <div class="grid2">
+          <div class="field"><label>CIDADE</label><input id="cidade" value="Paragominas"></div>
+          <div class="field"><label>ESTADO</label>
+            <select id="estado">
+              <option value="AC">ACRE</option><option value="AL">ALAGOAS</option><option value="AP">AMAPA</option><option value="AM">AMAZONAS</option><option value="BA">BAHIA</option><option value="CE">CEARA</option><option value="DF">DISTRITO FEDERAL</option><option value="ES">ESPIRITO SANTO</option><option value="GO">GOIAS</option><option value="MA">MARANHAO</option><option value="MT">MATO GROSSO</option><option value="MS">MATO GROSSO DO SUL</option><option value="MG">MINAS GERAIS</option><option value="PA" selected>PARA</option><option value="PB">PARAIBA</option><option value="PR">PARANA</option><option value="PE">PERNAMBUCO</option><option value="PI">PIAUI</option><option value="RJ">RIO DE JANEIRO</option><option value="RN">RIO GRANDE DO NORTE</option><option value="RS">RIO GRANDE DO SUL</option><option value="RO">RONDONIA</option><option value="RR">RORAIMA</option><option value="SC">SANTA CATARINA</option><option value="SP">SAO PAULO</option><option value="SE">SERGIPE</option><option value="TO">TOCANTINS</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc"><button class="acc-head" type="button" onclick="toggleAcc(this)"><span>FAMÍLIA</span><i class="chev">▼</i></button>
+      <div class="acc-body">
+        <!-- LINHA 1: SITUACAO pequena verde + CONJUGE grande azul -->
+        <div class="grid-sit-conjuge">
+          <div class="field"><label>SITUAÇÃO CONJUGAL</label><select id="sit_conjugal"><option value="">Selecione</option><option>Casado</option><option>Solteiro</option><option>Viúvo</option><option>Divorciado</option><option>Separado</option><option>União Estável</option></select></div>
+          <div class="field"><label>CONJUGE</label><input id="conjuge"></div>
+        </div>
+
+        <!-- LINHA 2: DATA pequena verde + MES pequena roxa + BODA grande vermelha -->
+        <div class="grid-data-mes-boda">
+          <div class="field"><label>DATA CASAMENTO</label><input id="data_casam" type="date"></div>
+          <div class="field"><label>MÊS AUTO</label><input id="casamento_mes" readonly class="readonly"></div>
+          <div class="field"><label>BODA AUTO</label><input id="boda" readonly class="readonly"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc open"><button class="acc-head" type="button" onclick="toggleAcc(this)"><span>DADOS PESSOAIS E ECLESIASTICOS</span><i class="chev">▼</i></button>
+      <div class="acc-body">
+        <div class="field"><label>FUNÇÃO ECLESIASTICA</label><select id="funcao_eclesiastica"><option value="">Selecione</option><option>Auxiliar</option><option>Diácono</option><option>Presbítero</option><option>Evangelista</option><option>Missionário</option><option>Pastor</option></select></div>
+        <div class="field"><label>FUNÇÃO DIRETORIA</label><select id="funcao_diretoria"><option value="">Selecione</option><option>Nenhuma</option><option>Presidente</option><option>Vice-Presidente</option><option>Secretário</option><option>Tesoureiro</option></select></div>
+        <div class="field"><label>FUNÇÃO CONGREGAÇÃO</label><select id="funcao_congregacao"><option value="">Selecione</option><option>Pastor</option><option>Dirigente</option><option>Vice-Dirigente</option><option>Superintendente EBD</option><option>Secretário</option><option>Tesoureiro</option><option>Auxiliar</option></select></div>
+        <div class="grid2"><div class="field"><label>MEMBRO</label><select id="membro"><option value="">Selecione</option><option>SIM</option><option>NÃO</option></select></div><div class="field"><label>BAT. ESPIRITO SANTO</label><select id="espirito_santo"><option value="">Selecione</option><option>SIM</option><option>NÃO</option></select></div></div>
+        <div class="grid2"><div class="field"><label>DEPARTAMENTO</label><select id="departamento"><option value="">Selecione</option><option>Homens UADMI</option><option>Mulheres UADMI</option><option>Jovens UJADMI</option><option>Adolescentes</option><option>Crianças</option><option>Missões</option><option>EBD</option><option>Louvor</option></select></div><div class="field"><label>FUNÇÃO DEPART.</label><select id="funcao_departamento"><option value="">Selecione</option><option>Presidente</option><option>Vice</option><option>Dirigente</option><option>Secretário</option><option>Tesoureiro</option><option>Professor</option></select></div></div>
+      </div>
+    </div>
+
+    <div class="acc"><button class="acc-head" type="button" onclick="toggleAcc(this)"><span>TEOLÓGICO</span><i class="chev">▼</i></button>
+      <div class="acc-body">
+        <div class="grid3"><div class="field"><label>CURSO TEOLOGICO</label><select id="curso_teologico"><option value="">Selecione</option><option>SIM</option><option>NÃO</option></select></div><div class="field"><label>GRAU</label><select id="grau_curso"><option value="">Selecione</option><option>Básico</option><option>Médio</option><option>Avançado</option><option>Bacharel</option></select></div><div class="field"><label>ANDAMENTO</label><select id="andamento"><option value="">Selecione</option><option>Cursando</option><option>Concluído</option><option>Trancado</option></select></div></div>
+        <div class="field"><label>TERMINO CURSO</label><input id="termino_curso" type="date"></div>
+        <div class="field"><label>OBSERVAÇÃO</label><textarea id="observacao" rows="3"></textarea></div>
+      </div>
+    </div>
+
+    <div class="toolbar-interno">
+      <button type="button" class="btn-tool" onclick="limparForm()">🧹 LIMPAR</button>
+      <button type="button" class="btn-tool danger" onclick="excluirSelecionado()">🗑️ EXCLUIR</button>
+      <button type="button" class="btn-tool print" onclick="imprimir()">🖨️ IMPRIMIR</button>
+      <button type="button" class="btn-tool save" onclick="salvar()">💾 SALVAR</button>
+    </div>
+  </form>
+
+  <div class="list-section">
+    <div class="search-interno"><input id="busca" placeholder="Buscar..."></div>
+    <h3>REGISTROS <span id="countList"></span></h3>
+    <div id="listaCards" class="cards-list"></div>
+    <div id="empty" class="empty">Nenhum registro.</div>
+  </div>
+</main>
+
+<div id="toast" class="toast"></div>
+<script src="Cadastro.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',Arial,sans-serif;text-transform:uppercase}
+body{background:#000;color:#fff;padding:0;display:block}
+.container{width:100%;max-width:760px;margin:0;margin-left:0;padding:12px}
+.topo{background:#1a1a1a;border:1px solid #2a2a2a;padding:12px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.topo h1{color:#ff8c00;font-size:13px;text-decoration:underline}
+.card{background:#1e1e1e;border:1px solid #2a2a2a;border-radius:14px;padding:16px;margin-bottom:12px}
+.card h2{color:#ff8c00;font-size:11px;margin-bottom:12px;display:flex;align-items:center;gap:6px;border-bottom:1px dashed #333;padding-bottom:8px}
+.card h2::before{content:"";width:3px;height:14px;background:#ff8c00;border-radius:2px;display:inline-block}
+.secao{background:#161616;border-left:3px solid #ff8c00;padding:8px 10px;margin:16px 0 10px;border-radius:0 8px 8px 0;font-size:11px;font-weight:800;color:#ff8c00}
+.checks{background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 12px}
+.check-item{display:flex;align-items:center;gap:8px;background:#222;border:1px solid #333;border-radius:8px;padding:8px 10px;cursor:pointer}
+.check-item input[type="checkbox"]{width:18px;height:18px;accent-color:#ff8c00;cursor:pointer}
+.check-item label{margin:0;color:#fff;font-size:9px;cursor:pointer}
+.check-item.ativo{border-color:#ff8c00;background:#2a1a00}
+.check-item.ativo label{color:#ff8c00}
+label{color:#ff8c00;font-size:8.5px;font-weight:800;display:block;margin:8px 0 3px}
+input,select{width:100%;background:#2b2b2b;border:1px solid #3a3a3a;border-radius:10px;color:#e0e0e0;padding:0 12px;font-size:11px;height:38px}
+input:focus,select:focus{outline:none;border-color:#ff8c00}
+input.cpf-invalido, input.matricula-invalida{border-color:#ff0000 !important;background:#2a1111 !important;box-shadow:0 0 0 2px rgba(255,0,0,.2)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.toolbar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+.btn{height:36px;border-radius:8px;border:none;font-weight:800;font-size:11px;cursor:pointer}
+.btn-dark{background:#ff8c00;color:#000}.btn-ghost{background:#2a2a2a;color:#fff;border:1px solid #3a3a3a}.btn-light{background:#fff;color:#000}
+.searchbar{display:flex;gap:8px;margin-bottom:10px}
+.searchbar input{flex:1}
+.table-wrap{overflow:auto;border:1px solid #2a2a2a;border-radius:8px;max-height:400px;background:#111}
+table{width:100%;border-collapse:collapse;font-size:9px;min-width:600px}
+th{background:#222;color:#ff8c00;padding:8px 5px;text-align:left;position:sticky;top:0}
+td{padding:7px 5px;border-bottom:1px solid #222;color:#ccc;white-space:nowrap}
+.badge{background:#222;color:#ff8c00;border:1px solid #ff8c00;padding:2px 6px;border-radius:4px;font-weight:800}
+.icon-btn{width:24px;height:24px;border-radius:5px;border:1px solid #444;background:#222;color:#fff;cursor:pointer}
+.dept-box{display:none;background:#0a0a0a;border:1px solid #222;border-radius:10px;padding:10px;margin-bottom:10px}
+.dept-box.show{display:block;animation:fade .2s}
+@keyframes fade{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal-bg.show{display:flex}.modal{background:#1a1a1a;border:1px solid #ff8c00;border-radius:10px;padding:18px;max-width:380px;width:100%}
+.row-top{display:grid;grid-template-columns:90px 1fr 1fr;gap:8px;align-items:end}
+.row-mid{display:grid;grid-template-columns:110px 1fr 110px;gap:8px;align-items:end}
+.col-setor input{max-width:110px}
+.col-num input{max-width:110px}
+.row-matricula{display:grid;grid-template-columns:90px 1fr;gap:8px;align-items:end}
+.row-matricula input.matricula{background:#2b2b2b;text-align:center;font-weight:800;letter-spacing:1px}
+@media(max-width:600px){
+.row-top{grid-template-columns:80px 1fr}
+.col-classe{grid-column:1 / -1}
+.row-mid{grid-template-columns:90px 1fr 80px}
+.row-matricula{grid-template-columns:80px 1fr}
+}
