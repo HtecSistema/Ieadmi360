@@ -12,8 +12,6 @@
 </head>
 <body>
 <div class="folha">
-<h1>Relatório Financeiro Mensal de Departamento</h1>
-<div class="sub">Controle de Entradas, Saídas e Fechamento de Caixa</div>
 
 <div class="header-grid">
   <div class="field"><label>Depto:</label><input type="text" id="depto" value="DEPARTAMENTO DE JOVENS"></div>
@@ -25,15 +23,11 @@
   <div class="field"><label>Data Final</label><input type="date" id="periodoAte"></div>
 </div>
 
-<!-- FECHAMENTO LADO A LADO LA EM CIMA -->
-<div class="section fechamento fechamento-topo">
-  <div class="section-title">Resumo / Fechamento de Caixa</div>
-  <div class="linhas lado-a-lado">
-    <div class="linha-mini"><span>Caixa anterior</span><input type="text" inputmode="numeric" class="valor" id="caixaAnterior" placeholder="0,00"></div>
-    <div class="linha-mini"><span>Total de entradas</span><input type="text" id="confEntradas" readonly value="0,00"></div>
-    <div class="linha-mini"><span>Somas p/ conferências</span><input type="text" id="somaConf" readonly value="0,00"></div>
-    <div class="linha-mini"><span>Total de saídas</span><input type="text" id="confSaidas" readonly value="0,00"></div>
-    <div class="linha-mini saldo-mini"><span>Saldo de Caixa</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
+<!-- SÓ CAIXA ANTERIOR AQUI EM CIMA -->
+<div class="section">
+  <div class="section-title">Caixa</div>
+  <div class="linhas">
+    <div class="linha"><span>Caixa anterior</span><input type="text" inputmode="numeric" class="valor" id="caixaAnterior" placeholder="0,00"></div>
   </div>
 </div>
 
@@ -63,6 +57,17 @@
     <div class="linha"><span>Mídias (Cd's, Cópias, Vídeos)</span><input type="text" inputmode="numeric" class="valor saida" id="s4" placeholder="0,00"></div>
     <div class="linha"><span>Despesas c/ eventos</span><input type="text" inputmode="numeric" class="valor saida" id="s5" placeholder="0,00"></div>
     <div class="linha"><span>Outras despesas</span><input type="text" inputmode="numeric" class="valor saida" id="s6" placeholder="0,00"></div>
+  </div>
+</div>
+
+<!-- DEMAIS CAMPOS DEPOIS DE OUTRAS DESPESAS -->
+<div class="section fechamento">
+  <div class="section-title">Resumo / Fechamento de Caixa</div>
+  <div class="linhas">
+    <div class="linha"><span>Total de entradas</span><input type="text" id="confEntradas" readonly value="0,00"></div>
+    <div class="linha"><span>Somas p/ conferências</span><input type="text" id="somaConf" readonly value="0,00"></div>
+    <div class="linha"><span>Total de saídas</span><input type="text" id="confSaidas" readonly value="0,00"></div>
+    <div class="linha total saldo"><span>Saldo de Caixa</span><input type="text" id="saldoCaixa" readonly value="0,00"></div>
   </div>
 </div>
 
