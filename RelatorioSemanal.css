@@ -1,8 +1,8 @@
 *{box-sizing:border-box; margin:0; padding:0;}
 body{
-  background:#000 !important; 
-  color:#fff; 
-  font-family:Arial, sans-serif; 
+  background:#0f172a !important; 
+  color:#e2e8f0; 
+  font-family:Inter, system-ui, sans-serif; 
   padding:0 !important; 
   margin:0 !important;
   display:flex !important; 
@@ -10,98 +10,59 @@ body{
   align-items:flex-start !important;
 }
 .folha{
-  background:#000; 
-  border:1px solid #222; 
-  padding:12px; 
+  background:#1e293b; 
+  border:1px solid #334155; 
+  padding:16px; 
   max-width:720px; 
   width:100%; 
   margin:0 !important; 
   margin-right:auto !important; 
   align-self:flex-start !important;
+  border-radius:12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
-.titulo.topo{text-align:center; font-weight:900; font-size:14px; color:#ff8c00; text-decoration:underline; margin:0 0 15px 0; text-transform:uppercase; line-height:1.3;}
-.header-grid{display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:12px;}
-.header-grid label, .campo-ass label{font-size:9px; color:#ff8c00; font-weight:700; display:block; margin-bottom:2px; text-transform:uppercase;}
+.titulo.topo{text-align:center; font-weight:900; font-size:14px; color:#fff; text-decoration:none; margin:0 0 15px 0; text-transform:uppercase; line-height:1.3; border-bottom:2px solid #38bdf8; padding-bottom:8px;}
+.header-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;}
+.header-grid label, .campo-ass label{font-size:9px; color:#38bdf8; font-weight:800; display:block; margin-bottom:3px; text-transform:uppercase; letter-spacing:.5px}
 
-/* FONTE BRANCA - CAMPO ESCURO - NUMERO NA DIREITA */
+/* CAMPO ESCURO - IGUAL DA FOTO */
 input{
   width:100px !important; 
-  padding:6px 10px !important; 
+  padding:8px 10px !important; 
   font-size:13px !important; 
-  background:#1e1e1e !important; 
-  color:#fff !important; 
-  border:1px solid #333 !important; 
-  border-radius:4px; 
+  background:#0f172a !important; 
+  color:#e2e8f0 !important; 
+  border:1px solid #334155 !important; 
+  border-radius:8px; 
   outline:none;
   text-align:right !important;
 }
 input[type="text"], input[type="date"]{width:100% !important; text-align:right !important;}
-input::placeholder{color:#888 !important; text-align:right !important;}
-input[readonly]{background:#111 !important; color:#ff8c00 !important; font-weight:700; text-align:right !important;}
-input:focus{border-color:#ff8c00 !important;}
+input::placeholder{color:#475569 !important; text-align:right !important;}
+input[readonly]{background:#020617 !important; color:#38bdf8 !important; font-weight:700; text-align:right !important; border-color:#334155 !important;}
+input:focus{border-color:#38bdf8 !important; background:#020617 !important; box-shadow:0 0 0 3px rgba(56,189,248,.15)}
 
-.bloco{display:flex; flex-direction:column; gap:6px; margin-top:10px;}
-.campo{display:flex; justify-content:space-between; align-items:center; border-bottom:1px dotted #333; padding:4px 0;}
-.campo label{flex:1; font-size:12px; color:#fff;}
+.bloco{display:flex; flex-direction:column; gap:6px; margin-top:12px;}
+.campo{display:flex; justify-content:space-between; align-items:center; border-bottom:1px dotted #334155; padding:6px 0;}
+.campo label{flex:1; font-size:12px; color:#94a3b8; font-weight:600}
 .campo input{width:120px !important; text-align:right !important;}
-.campo.total{background:#1e1e1e; padding:8px; border:1px solid #ff8c00; margin-top:6px;}
-.campo.total input{font-weight:900; color:#ff8c00 !important; border:none !important; background:transparent !important; font-size:15px !important; text-align:right !important;}
-.assinaturas{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px;}
-.titulo-sec{font-size:11px; font-weight:900; color:#ff8c00; text-align:center; margin-bottom:6px;}
-.test-linha{display:grid; grid-template-columns:100px 1fr; gap:6px; margin-bottom:6px;}
+.campo.total{background:#0f172a; padding:10px; border-radius:8px; margin-top:8px; border:1px solid #38bdf8}
+.campo.total label{color:#38bdf8 !important; font-weight:800}
+.campo.total input{font-weight:900; color:#38bdf8 !important; border:none !important; background:transparent !important; font-size:16px !important; text-align:right !important;}
+.assinaturas{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px;}
+.titulo-sec{font-size:11px; font-weight:900; color:#fff; text-align:center; margin-bottom:6px; background:#0f172a; padding:6px; border-radius:6px; border:1px solid #334155}
+.test-linha{display:grid; grid-template-columns:100px 1fr; gap:8px; margin-bottom:8px;}
 
-/* 3 BOTÕES DO MESMO TAMANHO */
-.botoes{
-  display:flex !important; 
-  gap:10px !important; 
-  justify-content:center !important; 
-  margin-top:18px !important; 
-  flex-wrap:nowrap !important;
-}
-.btn{
-  flex:1 !important;
-  width:100% !important;
-  height:44px !important;
-  min-height:44px !important;
-  padding:0 8px !important;
-  border:none; 
-  border-radius:6px; 
-  font-weight:900; 
-  cursor:pointer; 
-  font-size:12px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  white-space:nowrap !important;
-}
-.salvar{background:#ff8c00; color:#000;} .limpar{background:#333; color:#fff;} .enviar{background:#fff; color:#000;}
+/* BOTÕES - AZUL DA FOTO */
+.botoes{display:flex !important; gap:10px !important; justify-content:center !important; margin-top:20px !important; flex-wrap:nowrap !important;}
+.btn{flex:1 !important; width:100% !important; height:44px !important; min-height:44px !important; padding:0 8px !important; border:none; border-radius:10px; font-weight:900; cursor:pointer; font-size:12px !important; display:flex !important; align-items:center !important; justify-content:center !important; white-space:nowrap !important;}
+.salvar{background:#38bdf8; color:#0f172a;} .limpar{background:#1e293b; color:#94a3b8; border:1px solid #334155 !important} .enviar{background:#38bdf8; color:#0f172a;}
 
-/* TIRA SETA SÓ DO NÚMERO */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button{
-  -webkit-appearance:none !important; 
-  appearance:none !important; 
-  margin:0 !important; 
-  display:none !important;
-}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none !important; appearance:none !important; margin:0 !important; display:none !important;}
 input[type="number"]{-moz-appearance:textfield !important; appearance:textfield !important;}
+input[type="date"]::-webkit-calendar-picker-indicator{opacity:.6; cursor:pointer; width:18px; height:18px; filter:invert(1);}
 
-/* CALENDÁRIOZINHO BRANCO NO CAMPO ESCURO */
-input[type="date"]::-webkit-calendar-picker-indicator{
-  display:block !important;
-  opacity:1 !important;
-  cursor:pointer;
-  width:18px;
-  height:18px;
-  filter:invert(1);
-}
+#congregacao, #dirigente, #tesoureiro, #mesLanc, #dataDia, #diaSemana{text-align:left !important;}
+#congregacao::placeholder, #dirigente::placeholder, #tesoureiro::placeholder, #mesLanc::placeholder, #dataDia::placeholder, #diaSemana::placeholder{text-align:left !important;}
 
-/* === ÚNICA ALTERAÇÃO: ESSAS 6 CAIXAS DO PRINT NA ESQUERDA === */
-#congregacao, #dirigente, #tesoureiro, #mesLanc, #dataDia, #diaSemana{
-  text-align:left !important;
-}
-#congregacao::placeholder, #dirigente::placeholder, #tesoureiro::placeholder, #mesLanc::placeholder, #dataDia::placeholder, #diaSemana::placeholder{
-  text-align:left !important;
-}
-
-@media print{body{background:#fff !important; color:#000 !important; padding:0 !important;} .folha{display:none !important;} #print-area{display:block !important; font-family:'Times New Roman', serif; padding:15px 25px; color:#000; background:#fff;}}
+@media print{body{background:#fff !important; color:#000 !important;} .folha{box-shadow:none !important; border:none !important;} #print-area{display:block !important; font-family:'Times New Roman', serif; padding:15px 25px; color:#000; background:#fff;}}
